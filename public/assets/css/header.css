@@ -1,0 +1,223 @@
+/* Header */
+.tx-header{
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  width: 100%;
+  z-index: 2600;
+
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(230,234,242,.7);
+
+  overflow: visible; /* ✅ مهم */
+}
+
+.tx-header__inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding: 14px 0;
+}
+
+.tx-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.tx-brand__logo{
+  height:40px;
+  width:auto;
+}
+
+/* ✅ اخفاء الشعار في الهيدر وقت فتح القائمة */
+.tx-header.is-drawer-open .tx-brand{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tx-nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+.tx-nav__link{
+  font-weight: 800;
+  font-size: 15px;
+  color: rgba(15,23,42,.78);
+  padding: 10px 12px;
+  border-radius: 999px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.tx-nav__link:hover{
+  background: rgba(18,120,243,.08);
+  color: var(--tx-deep);
+}
+
+.tx-header__actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+/* Burger (mobile) - بدون دائرة */
+.tx-burger{
+  display:none;
+  width:44px;
+  height:44px;
+
+  border:0 !important;
+  outline:0;
+  background: transparent !important;
+  border-radius: 0 !important;
+  box-shadow:none !important;
+
+  cursor:pointer;
+  position: relative;
+  padding:0;
+}
+
+.tx-burger span{
+  position:absolute;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width:26px;
+  height:2px;
+  background: rgba(15,23,42,.90);
+  border-radius: 2px;
+  transition: transform .2s ease, top .2s ease, opacity .2s ease;
+}
+
+.tx-burger span:nth-child(1){ top: 14px; }
+.tx-burger span:nth-child(2){ top: 21px; }
+.tx-burger span:nth-child(3){ top: 28px; }
+
+.tx-burger.is-active span:nth-child(1){
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.tx-burger.is-active span:nth-child(2){
+  opacity: 0;
+}
+.tx-burger.is-active span:nth-child(3){
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* =========================
+   Drawer (Side panel)
+   ========================= */
+.tx-drawer{
+  position: fixed;
+  inset: 0;
+
+  z-index: 99999;       /* ✅ أعلى من كل المحتوى */
+  isolation: isolate;   /* ✅ يحل مشاكل التراكيب */
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+}
+.tx-drawer.is-open{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tx-drawer__backdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(6, 22, 43, .92);
+}
+
+.tx-drawer__panel{
+  position:absolute;
+  top:0;
+  bottom:0;
+
+  right:0;    /* ✅ ثابت يمين */
+  left:auto;
+
+  width: min(360px, 86vw);
+  background: #06162B;
+
+  border:0;
+  border-radius: 0;
+  box-shadow: -18px 0 50px rgba(0,0,0,.35);
+
+  padding: 18px 18px 22px;
+
+  display:flex;
+  flex-direction:column;
+  gap: 16px;
+
+  transform: translateX(100%);
+  transition: transform .24s ease;
+
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tx-drawer.is-open .tx-drawer__panel{
+  transform: translateX(0);
+}
+
+.tx-drawer__top{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+
+.tx-drawer__close{
+  width:44px;
+  height:44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.08);
+  color:#fff;
+  font-size: 22px;
+  cursor:pointer;
+}
+
+.tx-drawer__links{
+  display:flex;
+  flex-direction:column;
+  gap: 0;
+  padding-top: 6px;
+}
+
+.tx-drawer__links a{
+  padding: 14px 0;
+  font-weight: 900;
+  font-size: 18px;
+  color: rgba(255,255,255,.92);
+  text-align: right;
+
+  border:0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.tx-drawer__links a:hover{
+  color:#fff;
+  border-bottom-color: rgba(18,120,243,.55);
+}
+
+.tx-drawer__cta{
+  margin-top:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.tx-drawer__cta .tx-btn{
+  width:100%;
+  justify-content:center;
+}
+
+/* Responsive */
+@media (max-width: 760px){
+  .tx-nav{ display:none; }
+  .tx-burger{ display:inline-flex; align-items:center; justify-content:center; }
+}

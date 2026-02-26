@@ -1,0 +1,90 @@
+/* Services Cards */
+.tx-cards{
+  margin-top: 18px;
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.tx-card{
+  border-radius: var(--tx-radius-lg);
+  background: #fff;
+  border: 1px solid var(--tx-border);
+  box-shadow: var(--tx-shadow-soft);
+  padding: 16px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.tx-card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--tx-shadow);
+  border-color: rgba(18,120,243,.35);
+}
+.tx-card__icon{
+  width:40px;
+  height:40px;
+
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background: linear-gradient(135deg, var(--tx-primary), var(--tx-deep));
+  border: 1px solid rgba(18,120,243,.35);
+  color:#fff;
+
+  box-shadow: 0 10px 22px rgba(18,120,243,.20);
+  line-height: 0; /* ✅ يمنع أي فراغ/محاذاة غريبة */
+
+  overflow: hidden; /* ✅ مهم مع الصور */
+}
+
+/* ✅ صغّر الأيقونة نفسها */
+.tx-card__icon svg{
+  width:25px;
+  height:25px;
+  display:block;
+}
+
+/* ✅ دعم الأيقونات المرفوعة كصور */
+.tx-card__icon img{
+  display:block;
+  width:25px;
+  height:25px;
+  object-fit: contain;
+
+  /* ✅ يحول الأيقونات السوداء إلى أبيض */
+  filter: brightness(0) invert(1);
+}
+
+/* ✅ تأكيد: ما في تعبئة داخلية (بياض) */
+.tx-card__icon svg *{
+  fill: none !important;
+  stroke: currentColor;
+}
+
+/* ✅ خلي الخط أنعم شوي */
+.tx-card__icon svg path,
+.tx-card__icon svg rect{
+  stroke-width: 1.8;
+}
+
+/* لو الأيقونة SVG أو FontAwesome: خلّها ترث اللون الأبيض */
+.tx-card__icon svg{ fill: currentColor; }
+.tx-card__icon i{ color: currentColor; }
+
+.tx-card__title{
+  margin: 10px 0 6px;
+  font-size: 16px;
+  font-weight: 900;
+}
+.tx-card__text{
+  margin:0;
+  color: var(--tx-muted);
+  font-size: 14px;
+}
+
+@media (max-width: 980px){
+  .tx-cards{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px){
+  .tx-cards{ grid-template-columns: 1fr; }
+}

@@ -1,0 +1,26 @@
+@import url("./base.css");
+@import url("./components.css");
+
+@import url("./header.css");
+@import url("./hero.css");
+
+@import url("./sections.css");
+@import url("./services.css");
+@import url("./why.css");
+@import url("./process.css");
+@import url("./work.css");
+@import url("./faq.css");
+@import url("./contact.css");
+@import url("./footer.css");
+:root{
+  --tx-header-h: 72px; /* ارتفاع تقريبي للهيدر */
+}
+
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--tx-header-h) + 12px); /* عشان #services/#faq ما تختفي تحت الهيدر */
+}
+
+body{
+  padding-top: var(--tx-header-h); /* عشان المحتوى ما يدخل تحت الهيدر */
+}
