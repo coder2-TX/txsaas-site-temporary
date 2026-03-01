@@ -1,7 +1,7 @@
 <header class="tx-header" id="txHeader">
   <div class="tx-container tx-header__inner">
     <a class="tx-brand" href="#top" aria-label="العودة للأعلى">
-      <img class="tx-brand__logo" src="{{ asset('assets/images/brand/tx-saas.png') }}" alt="TX-SaaS" />
+      <img class="tx-brand__logo" src="{{ asset('assets/images/brand/TX SAAS PROFILE1.jpg.png') }}" alt="TX-SaaS" />
     </a>
 
     <nav class="tx-nav" aria-label="التنقل الرئيسي">

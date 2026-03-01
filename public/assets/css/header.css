@@ -18,17 +18,34 @@
   align-items:center;
   justify-content:space-between;
   gap:18px;
-  padding: 14px 0;
+  min-height: 76px;
+  padding: 6px 0;
 }
 
 .tx-brand{
   display:flex;
   align-items:center;
   gap:10px;
+  overflow: visible;
+  flex-shrink: 0;
 }
+
 .tx-brand__logo{
-  height:40px;
+  height:52px;              /* الحجم الحقيقي داخل اللايآوت */
   width:auto;
+  display:block;
+  object-fit:contain;
+  transform: scale(4);   /* تكبير بصري بدون زيادة ارتفاع الهيدر */
+  transform-origin: right center;
+}
+
+.tx-nav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* ✅ اخفاء الشعار في الهيدر وقت فتح القائمة */
@@ -38,19 +55,16 @@
   pointer-events: none;
 }
 
-.tx-nav{
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
 .tx-nav__link{
   font-weight: 800;
   font-size: 15px;
   color: rgba(15,23,42,.78);
   padding: 10px 12px;
   border-radius: 999px;
+  white-space: nowrap;
   transition: background-color .2s ease, color .2s ease;
 }
+
 .tx-nav__link:hover{
   background: rgba(18,120,243,.08);
   color: var(--tx-deep);
@@ -60,6 +74,11 @@
   display:flex;
   align-items:center;
   gap:10px;
+  flex-shrink: 0;
+}
+
+.tx-header__actions .tx-btn{
+  white-space: nowrap;
 }
 
 /* Burger (mobile) - بدون دائرة */
@@ -77,6 +96,7 @@
   cursor:pointer;
   position: relative;
   padding:0;
+  flex-shrink: 0;
 }
 
 .tx-burger span{
@@ -98,9 +118,11 @@
   top: 21px;
   transform: translateX(-50%) rotate(45deg);
 }
+
 .tx-burger.is-active span:nth-child(2){
   opacity: 0;
 }
+
 .tx-burger.is-active span:nth-child(3){
   top: 21px;
   transform: translateX(-50%) rotate(-45deg);
@@ -120,6 +142,7 @@
   pointer-events: none;
   transition: opacity .22s ease;
 }
+
 .tx-drawer.is-open{
   opacity: 1;
   pointer-events: auto;
@@ -158,6 +181,7 @@
   overflow:auto;
   -webkit-overflow-scrolling: touch;
 }
+
 .tx-drawer.is-open .tx-drawer__panel{
   transform: translateX(0);
 }
@@ -211,13 +235,132 @@
   flex-direction:column;
   gap:10px;
 }
+
 .tx-drawer__cta .tx-btn{
   width:100%;
   justify-content:center;
 }
 
-/* Responsive */
-@media (max-width: 760px){
-  .tx-nav{ display:none; }
-  .tx-burger{ display:inline-flex; align-items:center; justify-content:center; }
+/* =========================
+   Responsive
+   ========================= */
+
+/* لابتوب أصغر / تابلت أفقي */
+@media (max-width: 1180px){
+  .tx-header__inner{
+    gap: 14px;
+    min-height: 72px;
+  }
+
+  .tx-brand__logo{
+    height:48px;
+    transform: scale(4);
+  }
+
+  .tx-nav{
+    gap: 12px;
+  }
+
+  .tx-nav__link{
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .tx-header__actions{
+    gap: 8px;
+  }
+
+  .tx-header__actions .tx-btn{
+    padding-inline: 16px;
+    font-size: 14px;
+  }
+}
+
+/* تابلت / بداية الموبايل */
+@media (max-width: 980px){
+  .tx-header__inner{
+    min-height: 68px;
+    padding: 5px 0;
+  }
+
+  .tx-brand__logo{
+    height:46px;
+    transform: scale(4);
+  }
+
+  .tx-nav{
+    display:none;
+  }
+
+  /* نخفي زر الهيدر هنا عشان ما يزحم */
+  .tx-header__actions .tx-btn{
+    display:none;
+  }
+
+  .tx-burger{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+/* موبايل */
+@media (max-width: 640px){
+  .tx-header__inner{
+    min-height: 62px;
+    gap: 10px;
+    padding: 4px 0;
+  }
+
+  .tx-brand__logo{
+    height:42px;
+    transform: scale(4);
+  }
+
+  .tx-burger{
+    width:42px;
+    height:42px;
+  }
+
+  .tx-burger span{
+    width:24px;
+  }
+
+  .tx-burger span:nth-child(1){ top: 13px; }
+  .tx-burger span:nth-child(2){ top: 20px; }
+  .tx-burger span:nth-child(3){ top: 27px; }
+
+  .tx-burger.is-active span:nth-child(1){
+    top: 20px;
+  }
+
+  .tx-burger.is-active span:nth-child(3){
+    top: 20px;
+  }
+
+  .tx-drawer__panel{
+    width: min(340px, 92vw);
+    padding: 16px 16px 20px;
+  }
+
+  .tx-drawer__links a{
+    font-size: 17px;
+  }
+}
+
+/* موبايل صغير جدًا */
+@media (max-width: 420px){
+  .tx-header__inner{
+    min-height: 58px;
+    padding: 3px 0;
+  }
+
+  .tx-brand__logo{
+    height:38px;
+    transform: scale(4);
+  }
+
+  .tx-drawer__panel{
+    width: 100vw;
+  }
 }

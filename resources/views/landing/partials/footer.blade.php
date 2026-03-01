@@ -1,7 +1,7 @@
 <footer class="tx-footer">
       <div class="tx-container tx-footer__inner">
         <div class="tx-footer__brand">
-          <img src="{{ asset('assets/images/brand/tx-saas.png') }}" alt="TX-SaaS" />
+          {{-- <img src="{{ asset('assets/images/brand/TX SAAS PROFILE1.jpg.png') }}" alt="TX-SaaS" /> --}}
           <p>TX-SaaS — حلول برمجية ومنتجات SaaS قابلة للتوسع.</p>
         </div>
 
