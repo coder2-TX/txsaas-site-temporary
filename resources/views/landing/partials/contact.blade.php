@@ -1,7 +1,7 @@
 <section class="tx-section tx-contact" id="contact">
   @php
-    $defaultEmail = 'your@email.com';
-    $defaultWhats = '+000 000 000 000';
+    $defaultEmail = 'Info@travel-x.online';
+    $defaultWhats = '+967783939666';
 
     $contactRow = null;
 
