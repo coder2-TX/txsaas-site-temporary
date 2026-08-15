@@ -1,4 +1,13 @@
 <section class="tx-hero" id="home">
+  @php
+    $catalogHeroText = 'نساعدك على تنظيم أعمالك، تطوير خدماتك، والوصول إلى عملائك بسهولة، من خلال منتجات جاهزة قابلة للتخصيص وحلول تقنية تُبنى حسب احتياجك.';
+    $legacyHeroText = 'من الفكرة إلى الإطلاق: تصميم واجهات، Backend، APIs، لوحة تحكم، واستضافة — مع بنية قابلة للتوسع وأمان أعلى.';
+
+    $resolvedHeroText = filled($heroText ?? null) && trim((string) $heroText) !== $legacyHeroText
+      ? $heroText
+      : $catalogHeroText;
+  @endphp
+
   <div class="tx-hero__bg" aria-hidden="true">
     <div class="tx-blob tx-blob--1"></div>
     <div class="tx-blob tx-blob--2"></div>
@@ -8,13 +17,11 @@
   <div class="tx-container tx-hero__inner">
     <div class="tx-hero__content">
       <h1 class="tx-hero__title">
-        <span class="tx-hero__title-line">نبني منتجات <span class="tx-highlight">SaaS</span> وأنظمة أعمال</span>
-        <span class="tx-hero__title-line">بسرعة وجودة عالية.</span>
+        <span class="tx-hero__title-line">حلول <span class="tx-highlight">رقمية</span> متكاملة</span>
+        <span class="tx-hero__title-line">تنظّم أعمالك وتدعم نموك.</span>
       </h1>
 
-      <p class="tx-hero__text">
-        {{ $heroText ?? 'من الفكرة إلى الإطلاق: تصميم واجهات، Backend، APIs، لوحة تحكم، واستضافة — مع بنية قابلة للتوسع وأمان أعلى.' }}
-      </p>
+      <p class="tx-hero__text">{{ $resolvedHeroText }}</p>
 
       <div class="tx-hero__cta">
         <a class="tx-btn tx-btn--primary tx-hero__contact-btn" href="{{ url('/contact') }}">

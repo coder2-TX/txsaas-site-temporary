@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#4274B6" />
   <meta name="color-scheme" content="light" />
 
-  <title>TX-SaaS | حلول برمجية ومنتجات SaaS</title>
+  <title>TX-SaaS | حلول رقمية متكاملة ومنتجات تقنية للأعمال</title>
 
   <meta
     name="description"
-    content="TX-SaaS: نبني منتجات SaaS وأنظمة أعمال بسرعة وجودة عالية — واجهات، Backend، APIs، لوحة تحكم، واستضافة."
+    content="TX-SaaS تقدم حلولًا رقمية متكاملة تشمل تحليل الأنظمة، أنظمة الويب، تطبيقات الموبايل، المواقع الإلكترونية، الاستضافة والسيرفرات، إضافة إلى منتجات جاهزة قابلة للتخصيص."
   />
 
   <link

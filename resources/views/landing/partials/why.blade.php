@@ -1,21 +1,38 @@
 <section class="tx-section tx-section--soft tx-whySection" id="why">
   @php
-    $defaults = [
+    $legacyDefaults = [
       'subtitle' => 'نركز على بناء منتج “جاهز للبيع” — وليس مجرد كود.',
-
       'bullets' => [
         ['t' => 'Architecture قابل للتوسع', 'd' => 'تصميم طبقات واضح + قابلية إضافة ميزات بدون تعقيد.'],
-        ['t' => 'أداء عالي',              'd' => 'Caching، Queues، تحسين استعلامات قاعدة البيانات.'],
-        ['t' => 'أمان وموثوقية',          'd' => 'صلاحيات RBAC، تدقيق Logs، حماية نقاط الـ API.'],
-        ['t' => 'تسليم مرتب',             'd' => 'توثيق + بيئة نشر + مخرجات واضحة قابلة للإدارة.'],
+        ['t' => 'أداء عالي', 'd' => 'Caching، Queues، تحسين استعلامات قاعدة البيانات.'],
+        ['t' => 'أمان وموثوقية', 'd' => 'صلاحيات RBAC، تدقيق Logs، حماية نقاط الـ API.'],
+        ['t' => 'تسليم مرتب', 'd' => 'توثيق + بيئة نشر + مخرجات واضحة قابلة للإدارة.'],
       ],
-
       'checklist' => [
         'تصميم UI/UX مناسب للأعمال (RTL جاهز)',
         'Backend + API + Admin Dashboard',
         'نظام مستخدمين وصلاحيات وتدقيق',
         'جاهزية للنشر: إعدادات وأداء وأمان',
         'دعم بعد الإطلاق حسب الاتفاق',
+      ],
+    ];
+
+    $defaults = [
+      'subtitle' => 'نبني حلولًا عملية تجمع بين الكفاءة والمرونة وسهولة الاستخدام، وتساعد الشركات على إدارة عملياتها بثقة وتنظيم أعمالها بصورة أكثر احترافية.',
+
+      'bullets' => [
+        ['t' => 'حلول مصممة حسب احتياجك', 'd' => 'نبدأ من طبيعة عملك والتحديات الفعلية لنقدم حلًا يخدم احتياجك الحقيقي.'],
+        ['t' => 'منتجات جاهزة قابلة للتخصيص', 'd' => 'نوفّر منتجات رقمية جاهزة يمكن تكييفها لتناسب آلية العمل ومتطلبات كل منشأة.'],
+        ['t' => 'أنظمة مرنة تنمو مع أعمالك', 'd' => 'نبني بنية قابلة للتطوير والتوسع بدل حلول تتوقف عند الاحتياج الحالي.'],
+        ['t' => 'تشغيل مستقر وتجربة أكثر كفاءة', 'd' => 'نركز على وضوح العمليات وسهولة الاستخدام واستقرار التشغيل لتحسين تجربة الفرق والعملاء.'],
+      ],
+
+      'checklist' => [
+        'تنظيم العمليات اليومية بصورة أوضح',
+        'رفع كفاءة التشغيل وتقليل التعقيد',
+        'تجربة استخدام سهلة للفرق والعملاء',
+        'بنية تقنية تدعم الاستدامة والتوسع',
+        'متابعة وتشغيل أكثر استقرارًا',
       ],
     ];
 
@@ -27,42 +44,54 @@
         $row = null;
     }
 
-    // ✅ نفس منطق الخدمات: is_active = تفعيل التخصيص
     $useCustom = $row && (bool) $row->is_active;
 
-    $subtitle = ($useCustom && filled($row->subtitle)) ? $row->subtitle : $defaults['subtitle'];
+    $resolveCatalogValue = static function ($value, $legacy, $catalog) {
+        if (!filled($value)) {
+            return $catalog;
+        }
 
-    $bullets = [
-      [
-        't' => ($useCustom && filled($row->b1_title)) ? $row->b1_title : $defaults['bullets'][0]['t'],
-        'd' => ($useCustom && filled($row->b1_desc))  ? $row->b1_desc  : $defaults['bullets'][0]['d'],
-      ],
-      [
-        't' => ($useCustom && filled($row->b2_title)) ? $row->b2_title : $defaults['bullets'][1]['t'],
-        'd' => ($useCustom && filled($row->b2_desc))  ? $row->b2_desc  : $defaults['bullets'][1]['d'],
-      ],
-      [
-        't' => ($useCustom && filled($row->b3_title)) ? $row->b3_title : $defaults['bullets'][2]['t'],
-        'd' => ($useCustom && filled($row->b3_desc))  ? $row->b3_desc  : $defaults['bullets'][2]['d'],
-      ],
-      [
-        't' => ($useCustom && filled($row->b4_title)) ? $row->b4_title : $defaults['bullets'][3]['t'],
-        'd' => ($useCustom && filled($row->b4_desc))  ? $row->b4_desc  : $defaults['bullets'][3]['d'],
-      ],
-    ];
+        return trim((string) $value) === trim((string) $legacy)
+            ? $catalog
+            : $value;
+    };
 
-    $checklist = [
-      ($useCustom && filled($row->c1)) ? $row->c1 : $defaults['checklist'][0],
-      ($useCustom && filled($row->c2)) ? $row->c2 : $defaults['checklist'][1],
-      ($useCustom && filled($row->c3)) ? $row->c3 : $defaults['checklist'][2],
-      ($useCustom && filled($row->c4)) ? $row->c4 : $defaults['checklist'][3],
-      ($useCustom && filled($row->c5)) ? $row->c5 : $defaults['checklist'][4],
-    ];
+    $subtitle = $useCustom
+      ? $resolveCatalogValue($row->subtitle, $legacyDefaults['subtitle'], $defaults['subtitle'])
+      : $defaults['subtitle'];
+
+    $bullets = [];
+
+    for ($i = 1; $i <= 4; $i++) {
+      $idx = $i - 1;
+      $titleField = "b{$i}_title";
+      $descField = "b{$i}_desc";
+
+      $bullets[] = [
+        't' => $useCustom
+          ? $resolveCatalogValue($row->{$titleField}, $legacyDefaults['bullets'][$idx]['t'], $defaults['bullets'][$idx]['t'])
+          : $defaults['bullets'][$idx]['t'],
+        'd' => $useCustom
+          ? $resolveCatalogValue($row->{$descField}, $legacyDefaults['bullets'][$idx]['d'], $defaults['bullets'][$idx]['d'])
+          : $defaults['bullets'][$idx]['d'],
+      ];
+    }
+
+    $checklist = [];
+
+    for ($i = 1; $i <= 5; $i++) {
+      $idx = $i - 1;
+      $field = "c{$i}";
+
+      $checklist[] = $useCustom
+        ? $resolveCatalogValue($row->{$field}, $legacyDefaults['checklist'][$idx], $defaults['checklist'][$idx])
+        : $defaults['checklist'][$idx];
+    }
   @endphp
 
   <div class="tx-container">
     <div class="tx-sectionHead">
-      <h2 class="tx-h2">لماذا TX-SaaS؟</h2>
+      <h2 class="tx-h2">شريكك نحو التحول الرقمي</h2>
       <p class="tx-sub">{{ $subtitle }}</p>
     </div>
 
@@ -80,14 +109,16 @@
       </div>
 
       <aside class="tx-whyOutcome">
-        <span class="tx-whyOutcome__eyebrow">مخرجات واضحة</span>
-        <h3 class="tx-whyOutcome__title">ماذا ستحصل عليه؟</h3>
+        <span class="tx-whyOutcome__eyebrow">قيمة عملية</span>
+        <h3 class="tx-whyOutcome__title">ما الذي نقدمه لأعمالك؟</h3>
+
         <ul class="tx-whyOutcome__list">
           @foreach ($checklist as $item)
             <li><span class="tx-whyOutcome__check" aria-hidden="true">✓</span><span>{{ $item }}</span></li>
           @endforeach
         </ul>
-        <a class="tx-btn tx-whyOutcome__cta" href="{{ url('/contact') }}">ابدأ مشروعك الآن</a>
+
+        <a class="tx-btn tx-whyOutcome__cta" href="{{ url('/contact') }}">ناقش احتياجك معنا</a>
       </aside>
     </div>
   </div>

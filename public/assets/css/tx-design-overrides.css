@@ -4920,3 +4920,207 @@ body.is-scrolled .tx-header {
 }
 
 /* TX_SAAS_HEADER_CALL_ICON_V10_4_END */
+
+/* TX_SAAS_PRODUCTS_FOOTER_DRAWER_REFINEMENT_V11_1_START */
+
+/* =========================================================
+   1. Product cards — category pills removed from markup.
+   Keep title spacing balanced without the old tag.
+========================================================= */
+
+#work .tx-workCard__t {
+  margin-top: 10px !important;
+}
+
+/* Six products form two balanced rows on desktop. */
+#work .tx-workGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 980px) {
+  #work .tx-workGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #work .tx-workGrid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   2. Reduce the gap before footer on BOTH pages
+========================================================= */
+
+#faq.tx-section {
+  padding-bottom: 28px !important;
+}
+
+.tx-contact-v10__section {
+  padding-bottom: 28px !important;
+}
+
+.tx-footer {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #faq.tx-section {
+    padding-bottom: 22px !important;
+  }
+
+  .tx-contact-v10__section {
+    padding-bottom: 22px !important;
+  }
+}
+
+/* =========================================================
+   3. Responsive drawer close icon
+   Black icon only — no card, border, background, or shadow.
+========================================================= */
+
+@media (max-width: 980px) {
+  .tx-drawer__close {
+    width: 34px !important;
+    min-width: 34px !important;
+    height: 34px !important;
+
+    display: inline-grid !important;
+    place-items: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #111111 !important;
+    background: transparent !important;
+
+    border: 0 !important;
+    outline: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    font-size: 0 !important;
+    line-height: 0 !important;
+
+    cursor: pointer !important;
+
+    transition:
+      color .16s ease,
+      opacity .16s ease !important;
+  }
+
+  .tx-drawer__close:hover,
+  .tx-drawer__close:focus-visible,
+  .tx-drawer__close:active {
+    color: #000000 !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    opacity: .72 !important;
+  }
+
+  .tx-drawer__closeIcon {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    background: currentColor;
+
+    -webkit-mask:
+      url("../images/brand/material-symbols-light_close-small-outline-rounded.svg")
+      center / contain no-repeat;
+
+    mask:
+      url("../images/brand/material-symbols-light_close-small-outline-rounded.svg")
+      center / contain no-repeat;
+  }
+}
+
+@media (max-width: 640px) {
+  .tx-drawer__close {
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+  }
+
+  .tx-drawer__closeIcon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* TX_SAAS_PRODUCTS_FOOTER_DRAWER_REFINEMENT_V11_1_END */
+
+/* TX_SAAS_CARD_CONTENT_ALIGNMENT_V11_2_START */
+
+/* Services: add breathing room between icon holder and text. */
+#services .tx-card__icon {
+  margin-bottom: 18px !important;
+}
+
+#services .tx-card__title {
+  margin-top: 0 !important;
+}
+
+#services .tx-card__title + .tx-card__text {
+  margin-top: 8px !important;
+}
+
+/* Why cards: vertically center the whole card content. */
+#why .tx-whyPoint {
+  min-height: 154px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+#why .tx-whyPoint__index {
+  align-self: center !important;
+  flex: 0 0 auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#why .tx-whyPoint__content {
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  min-width: 0;
+}
+
+#why .tx-whyPoint__title {
+  margin-top: 0 !important;
+}
+
+#why .tx-whyPoint__text {
+  margin-bottom: 0 !important;
+}
+
+@media (max-width: 980px) {
+  #services .tx-card__icon {
+    margin-bottom: 16px !important;
+  }
+
+  #why .tx-whyPoint {
+    min-height: 146px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  #services .tx-card__icon {
+    margin-bottom: 15px !important;
+  }
+
+  #why .tx-whyPoint {
+    min-height: 132px !important;
+    gap: 14px !important;
+  }
+}
+
+/* TX_SAAS_CARD_CONTENT_ALIGNMENT_V11_2_END */
