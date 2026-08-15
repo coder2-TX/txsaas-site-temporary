@@ -233,3 +233,131 @@
     initUI();
   });
 })();
+
+/* TX_SAAS_ACTIVE_NAV_V8_START */
+(function () {
+  function initTxActiveNavV8() {
+    const links = Array.from(document.querySelectorAll('.tx-nav__link'));
+    if (!links.length) return;
+
+    const homeLink = links.find((link) => link.dataset.navPage === 'home');
+    const contactLink = links.find((link) => link.dataset.navPage === 'contact');
+
+    const clearActive = () => links.forEach((link) => {
+      link.classList.remove('is-active');
+      link.removeAttribute('aria-current');
+    });
+
+    const setActive = (link) => {
+      if (!link) return;
+      clearActive();
+      link.classList.add('is-active');
+      link.setAttribute('aria-current', 'page');
+    };
+
+    const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+    if (currentPath === '/contact') { setActive(contactLink); return; }
+    if (currentPath !== '/') return;
+
+    const sectionItems = links
+      .filter((link) => link.dataset.navSection)
+      .map((link) => ({ link, section: document.getElementById(link.dataset.navSection) }))
+      .filter((item) => item.section);
+
+    if (!sectionItems.length) { setActive(homeLink); return; }
+
+    const firstSectionTop = () => Math.max(0, sectionItems[0].section.getBoundingClientRect().top + window.scrollY - 150);
+    const visible = new Map();
+
+    const syncActive = () => {
+      if (window.scrollY < firstSectionTop()) { setActive(homeLink); return; }
+      const candidates = sectionItems
+        .filter(({ section }) => visible.get(section))
+        .sort((a, b) => Math.abs(a.section.getBoundingClientRect().top - 100) - Math.abs(b.section.getBoundingClientRect().top - 100));
+      if (candidates.length) setActive(candidates[0].link);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => visible.set(entry.target, entry.isIntersecting));
+        syncActive();
+      }, { root: null, rootMargin: '-18% 0px -58% 0px', threshold: [0, .06, .16, .3] });
+      sectionItems.forEach(({ section }) => observer.observe(section));
+    }
+
+    window.addEventListener('scroll', syncActive, { passive: true });
+    window.addEventListener('resize', syncActive, { passive: true });
+    links.forEach((link) => link.addEventListener('click', () => {
+      if (link === homeLink) setActive(homeLink);
+      else if (link.dataset.navSection) setActive(link);
+    }));
+    syncActive();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTxActiveNavV8);
+  else initTxActiveNavV8();
+})();
+/* TX_SAAS_ACTIVE_NAV_V8_END */
+
+/* TX_SAAS_RESPONSIVE_STATE_FIX_V8_4_START */
+(function () {
+  const RESPONSIVE_MAX = 980;
+
+  function getDrawer() {
+    return document.getElementById('txDrawer');
+  }
+
+  function getBurger() {
+    return document.getElementById('txBurger');
+  }
+
+  function unlockPageScroll() {
+    document.documentElement.style.removeProperty('overflow');
+    document.body.style.removeProperty('overflow');
+
+    document.documentElement.classList.remove('tx-drawer-open');
+    document.body.classList.remove('tx-drawer-open');
+  }
+
+  function closeResponsiveDrawer() {
+    const drawer = getDrawer();
+    const burger = getBurger();
+
+    if (drawer) {
+      drawer.classList.remove('is-open');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+
+    if (burger) {
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
+    const header = document.getElementById('txHeader');
+
+    if (header) {
+      header.classList.remove('is-drawer-open');
+    }
+
+    unlockPageScroll();
+  }
+
+  function enforceResponsiveState() {
+    if (window.innerWidth > RESPONSIVE_MAX) {
+      closeResponsiveDrawer();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enforceResponsiveState);
+  } else {
+    enforceResponsiveState();
+  }
+
+  window.addEventListener('resize', enforceResponsiveState, {
+    passive: true,
+  });
+
+  window.addEventListener('orientationchange', function () {
+    window.setTimeout(enforceResponsiveState, 60);
+  });
+})();
+/* TX_SAAS_RESPONSIVE_STATE_FIX_V8_4_END */

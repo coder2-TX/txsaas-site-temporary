@@ -17,3 +17,6 @@ Route::get('/', function () {
 
     return view('landing.index', compact('heroText'));
 })->name('landing');
+
+// TX-SAAS V6 contact page
+Route::view('/contact', 'landing.contact')->name('contact');

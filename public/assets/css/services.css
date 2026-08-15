@@ -27,7 +27,7 @@
   align-items:center;
   justify-content:center;
 
-  background: linear-gradient(135deg, var(--tx-primary), var(--tx-deep));
+  background: #4274B6;
   border: 1px solid rgba(18,120,243,.35);
   color:#fff;
 

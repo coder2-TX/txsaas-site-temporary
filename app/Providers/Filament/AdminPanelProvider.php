@@ -28,16 +28,27 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('TX-SaaS')
+            ->brandLogo(asset('assets/images/brand/Brand_Mark.png'))
+            ->favicon(asset('assets/images/brand/Brand_Mark.png'))
             ->login()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::hex('#4274B6'),
             ])
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(
+                in: app_path('Filament/Resources'),
+                for: 'App\Filament\Resources'
+            )
+            ->discoverPages(
+                in: app_path('Filament/Pages'),
+                for: 'App\Filament\Pages'
+            )
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(
+                in: app_path('Filament/Widgets'),
+                for: 'App\Filament\Widgets'
+            )
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,

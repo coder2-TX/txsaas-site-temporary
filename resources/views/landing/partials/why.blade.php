@@ -1,4 +1,4 @@
-<section class="tx-section tx-section--soft" id="why">
+<section class="tx-section tx-section--soft tx-whySection" id="why">
   @php
     $defaults = [
       'subtitle' => 'نركز على بناء منتج “جاهز للبيع” — وليس مجرد كود.',
@@ -66,25 +66,29 @@
       <p class="tx-sub">{{ $subtitle }}</p>
     </div>
 
-    <div class="tx-split">
-      <div class="tx-bullets">
-        @foreach ($bullets as $b)
-          <div class="tx-bullet">
-            <div class="tx-bullet__t">{{ $b['t'] }}</div>
-            <div class="tx-bullet__d">{{ $b['d'] }}</div>
-          </div>
+    <div class="tx-whyGrid">
+      <div class="tx-whyPoints">
+        @foreach ($bullets as $i => $b)
+          <article class="tx-whyPoint">
+            <span class="tx-whyPoint__index">{{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}</span>
+            <div class="tx-whyPoint__content">
+              <h3 class="tx-whyPoint__title">{{ $b['t'] }}</h3>
+              <p class="tx-whyPoint__text">{{ $b['d'] }}</p>
+            </div>
+          </article>
         @endforeach
       </div>
 
-      <div class="tx-panel">
-        <div class="tx-panel__title">ماذا ستحصل عليه؟</div>
-        <ul class="tx-checklist">
+      <aside class="tx-whyOutcome">
+        <span class="tx-whyOutcome__eyebrow">مخرجات واضحة</span>
+        <h3 class="tx-whyOutcome__title">ماذا ستحصل عليه؟</h3>
+        <ul class="tx-whyOutcome__list">
           @foreach ($checklist as $item)
-            <li>{{ $item }}</li>
+            <li><span class="tx-whyOutcome__check" aria-hidden="true">✓</span><span>{{ $item }}</span></li>
           @endforeach
         </ul>
-        <a class="tx-btn tx-btn--primary tx-btn--block" href="#contact">ابدأ مشروعك الآن</a>
-      </div>
+        <a class="tx-btn tx-whyOutcome__cta" href="{{ url('/contact') }}">ابدأ مشروعك الآن</a>
+      </aside>
     </div>
   </div>
 </section>
