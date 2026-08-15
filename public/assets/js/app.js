@@ -361,3 +361,91 @@
   });
 })();
 /* TX_SAAS_RESPONSIVE_STATE_FIX_V8_4_END */
+
+/* TX_SAAS_CONTACT_CUSTOM_SELECT_V10_2_START */
+(function () {
+  function initContactSelect(root) {
+    if (!root || root.dataset.txSelectReady === '1') {
+      return;
+    }
+
+    const trigger = root.querySelector('[data-tx-contact-select-trigger]');
+    const valueLabel = root.querySelector('[data-tx-contact-select-value]');
+    const hiddenInput = root.querySelector('[data-tx-contact-select-input]');
+    const options = Array.from(
+      root.querySelectorAll('[data-tx-contact-select-option]')
+    );
+
+    if (!trigger || !valueLabel || !hiddenInput || options.length === 0) {
+      return;
+    }
+
+    root.dataset.txSelectReady = '1';
+
+    function setOpen(open) {
+      root.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function selectOption(option) {
+      const selectedValue = option.dataset.value || '';
+      const selectedLabel = option.textContent.trim();
+
+      hiddenInput.value = selectedValue;
+      valueLabel.textContent = selectedLabel;
+      valueLabel.classList.toggle('is-placeholder', selectedValue === '');
+
+      options.forEach(function (item) {
+        const selected = item === option;
+
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+
+      hiddenInput.dispatchEvent(
+        new Event('change', {
+          bubbles: true,
+        })
+      );
+
+      setOpen(false);
+      trigger.focus();
+    }
+
+    trigger.addEventListener('click', function () {
+      setOpen(!root.classList.contains('is-open'));
+    });
+
+    options.forEach(function (option) {
+      option.addEventListener('click', function () {
+        selectOption(option);
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!root.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && root.classList.contains('is-open')) {
+        setOpen(false);
+        trigger.focus();
+      }
+    });
+  }
+
+  function bootContactSelects() {
+    document
+      .querySelectorAll('[data-tx-contact-select]')
+      .forEach(initContactSelect);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootContactSelects);
+  } else {
+    bootContactSelects();
+  }
+})();
+/* TX_SAAS_CONTACT_CUSTOM_SELECT_V10_2_END */
