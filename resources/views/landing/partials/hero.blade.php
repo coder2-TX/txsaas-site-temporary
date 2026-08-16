@@ -1,6 +1,6 @@
-<section class="tx-hero" id="home">
+<section class="tx-hero tx-hero--reference" id="home">
   @php
-    $catalogHeroText = 'نساعدك على تنظيم أعمالك، تطوير خدماتك، والوصول إلى عملائك بسهولة، من خلال منتجات جاهزة قابلة للتخصيص وحلول تقنية تُبنى حسب احتياجك.';
+    $catalogHeroText = 'نبني لك مواقع إلكترونية، أنظمة SaaS، تطبيقات ولوحات تحكم عملية تساعدك على تنظيم العمل، تحسين التجربة، والانطلاق بنمو أوضح.';
     $legacyHeroText = 'من الفكرة إلى الإطلاق: تصميم واجهات، Backend، APIs، لوحة تحكم، واستضافة — مع بنية قابلة للتوسع وأمان أعلى.';
 
     $resolvedHeroText = filled($heroText ?? null) && trim((string) $heroText) !== $legacyHeroText
@@ -8,36 +8,31 @@
       : $catalogHeroText;
   @endphp
 
-  <div class="tx-hero__bg" aria-hidden="true">
-    <div class="tx-blob tx-blob--1"></div>
-    <div class="tx-blob tx-blob--2"></div>
-    <div class="tx-grid"></div>
-  </div>
+  <div class="tx-container">
+    <div class="tx-heroRef">
+      <div class="tx-heroRef__bg tx-heroRef__bg--left" aria-hidden="true"></div>
+      <div class="tx-heroRef__bg tx-heroRef__bg--right" aria-hidden="true"></div>
 
-  <div class="tx-container tx-hero__inner">
-    <div class="tx-hero__content">
-      <h1 class="tx-hero__title">
-        <span class="tx-hero__title-line">حلول <span class="tx-highlight">رقمية</span> متكاملة</span>
-        <span class="tx-hero__title-line">تنظّم أعمالك وتدعم نموك.</span>
-      </h1>
+      <div class="tx-heroRef__content">
+        <div class="tx-heroRef__chip tx-heroRef__chip--top">TX-SaaS موثوق للشركات</div>
 
-      <p class="tx-hero__text">{{ $resolvedHeroText }}</p>
+        <h1 class="tx-heroRef__title">
+          <span class="tx-heroRef__line tx-heroRef__line--first">حلول رقمية متكاملة</span>
+          <span class="tx-heroRef__line tx-heroRef__line--second">تنظّم أعمالك وتدعم نموك <span class="tx-heroRef__confidence"><span class="tx-heroRef__confidenceWord">بثقة</span><span class="tx-heroRef__patternSlot" aria-hidden="true"><img class="tx-heroRef__patternSvg" src="{{ asset('assets/images/brand/pattern-line.svg') }}" alt=""></span></span></span>
+        </h1>
 
-      <div class="tx-hero__cta">
-        <a class="tx-btn tx-btn--primary tx-hero__contact-btn" href="{{ url('/contact') }}">
-          <span class="tx-call-icon" aria-hidden="true"></span><span>تواصل معنا</span>
-        </a>
-        <a class="tx-btn tx-btn--ghost" href="#services">استعرض الخدمات</a>
-      </div>
-    </div>
+        <p class="tx-heroRef__lead">{{ $resolvedHeroText }}</p>
 
-    <div class="tx-hero__cloud" aria-hidden="true">
-      <div class="tx-cloudMark">
-        <div class="tx-cloudMark__ring"></div>
-        <svg class="tx-cloudMark__svg" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" d="M17.5 19H6a4 4 0 0 1 0-8 5.5 5.5 0 0 1 10.5-2.1A3.5 3.5 0 1 1 17.5 19Z" />
-        </svg>
-        <div class="tx-cloudMark__tx">TX</div>
+        <div class="tx-heroRef__actions">
+          <a class="tx-btn tx-btn--primary tx-heroRef__btnPrimary" href="{{ url('/contact') }}">
+            <span class="tx-call-icon" aria-hidden="true"></span>
+            <span>تواصل معنا</span>
+          </a>
+
+          <a class="tx-btn tx-btn--ghost tx-heroRef__btnGhost" href="#services">
+            استعرض الخدمات
+          </a>
+        </div>
       </div>
     </div>
   </div>
