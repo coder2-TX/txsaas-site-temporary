@@ -1,38 +1,262 @@
-/* Buttons */
-.tx-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  border-radius: 999px;
-  padding: 11px 16px;
-  font-weight: 800;
+/* Canonical TX-SaaS styles — consolidated from approved visual state. */
+
+.tx-btn {
   font-size: 14px;
   border: 1px solid transparent;
-  transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
-  cursor:pointer;
-  user-select:none;
-  white-space:nowrap;
-}
-.tx-btn:active{ transform: translateY(1px); }
-
-.tx-btn--primary{
-  background: var(--tx-primary);
-  color:#fff;
-  box-shadow: 0 14px 30px rgba(18,120,243,.24);
-}
-.tx-btn--primary:hover{
-  box-shadow: 0 18px 40px rgba(18,120,243,.30);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
 }
 
-.tx-btn--ghost{
-  background: rgba(255,255,255,.70);
-  border-color: var(--tx-border);
-  color: var(--tx-text);
+.tx-btn:active {
+  transform: translateY(1px);
 }
-.tx-btn--ghost:hover{
-  border-color: rgba(18,120,243,.45);
+
+.tx-btn--ghost:hover {
   box-shadow: var(--tx-shadow-soft);
 }
 
-.tx-btn--block{ width:100%; }
+button {
+  font-family: "Somar Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+}
+
+input {
+  font-family: "Somar Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+}
+
+.tx-btn--block {
+  width: 100% !important;
+}
+
+.tx-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px;
+  padding: 11px
+    20px;
+  border-radius: var(--tx-radius-pill) !important;
+  line-height: 1 !important;
+  transition: transform .2s var(--tx-ease),
+    box-shadow .2s var(--tx-ease),
+    background-color .2s var(--tx-ease),
+    border-color .2s var(--tx-ease) !important;
+}
+
+.tx-btn--primary {
+  color: #FFFFFF !important;
+  background: var(--tx-primary) !important;
+  border-color: var(--tx-primary) !important;
+  box-shadow: 0 12px 28px rgba(66, 116, 182, 0.20) !important;
+}
+
+.tx-btn--primary:hover {
+  color: #FFFFFF !important;
+  background: var(--tx-primary-hover) !important;
+  border-color: var(--tx-primary-hover) !important;
+  box-shadow: 0 16px 34px rgba(66, 116, 182, 0.26) !important;
+}
+
+.tx-btn--ghost {
+  color: var(--tx-title) !important;
+  background: #FFFFFF !important;
+  border-color: var(--tx-border) !important;
+}
+
+.tx-btn--ghost:hover {
+  color: var(--tx-primary) !important;
+  border-color: rgba(66, 116, 182, 0.30) !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  font-family: "Somar Sans",
+    system-ui,
+    sans-serif !important;
+  border-radius: 14px !important;
+  border-color: var(--tx-border) !important;
+  transition: border-color .2s var(--tx-ease),
+    box-shadow .2s var(--tx-ease) !important;
+}
+
+select {
+  font-family: "Somar Sans",
+    system-ui,
+    sans-serif !important;
+  border-radius: 14px !important;
+  border-color: var(--tx-border) !important;
+  transition: border-color .2s var(--tx-ease),
+    box-shadow .2s var(--tx-ease) !important;
+}
+
+textarea {
+  font-family: "Somar Sans",
+    system-ui,
+    sans-serif !important;
+  border-radius: 14px !important;
+  border-color: var(--tx-border) !important;
+  transition: border-color .2s var(--tx-ease),
+    box-shadow .2s var(--tx-ease) !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus {
+  outline: none !important;
+  border-color: rgba(66, 116, 182, 0.55) !important;
+  box-shadow: 0 0 0 4px rgba(66, 116, 182, 0.11) !important;
+}
+
+select:focus {
+  outline: none !important;
+  border-color: rgba(66, 116, 182, 0.55) !important;
+  box-shadow: 0 0 0 4px rgba(66, 116, 182, 0.11) !important;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: rgba(66, 116, 182, 0.55) !important;
+  box-shadow: 0 0 0 4px rgba(66, 116, 182, 0.11) !important;
+}
+
+main button {
+  font-size: var(--tx-font-body) !important;
+}
+
+main input {
+  font-size: var(--tx-font-body) !important;
+}
+
+main .tx-btn {
+  min-height: 39px !important;
+  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  line-height: 1 !important;
+}
+
+main button[type="submit"] {
+  min-height: 39px !important;
+  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  line-height: 1 !important;
+}
+
+main input[type="submit"] {
+  min-height: 39px !important;
+  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  line-height: 1 !important;
+}
+
+main .btn {
+  min-height: 39px !important;
+  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  line-height: 1 !important;
+}
+
+main a.btn {
+  min-height: 39px !important;
+  padding: 8px 15px !important;
+  font-size: 12.5px !important;
+  line-height: 1 !important;
+}
+
+main input:not([type="checkbox"]):not([type="radio"]) {
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  font-size: 13.5px !important;
+}
+
+main select {
+  min-height: 42px !important;
+  padding: 8px 12px !important;
+  font-size: 13.5px !important;
+}
+
+main textarea {
+  min-height: 108px !important;
+  padding: 10px 12px !important;
+  font-size: 13.5px !important;
+}
+
+.tx-btn {
+  font-weight: 500 !important;
+}
+
+.tx-btn--primary {
+  font-weight: 500 !important;
+}
+
+.tx-btn--ghost {
+  font-weight: 500 !important;
+}
+
+button {
+  font-weight: 500 !important;
+}
+
+button[type="submit"] {
+  font-weight: 500 !important;
+}
+
+input[type="submit"] {
+  font-weight: 500 !important;
+}
+
+label {
+  font-size: 14.5px !important;
+  font-weight: 500 !important;
+}
+
+input:not([type="checkbox"]):not([type="radio"]) {
+  font-size: 15px !important;
+}
+
+select {
+  font-size: 15px !important;
+}
+
+textarea {
+  font-size: 15px !important;
+}
+
+.tx-icon {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+}
+
+.tx-icon-wrap {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+}
+
+.tx-icon-box {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+}
+
+.tx-icon-card {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+}
+
+.tx-send-icon {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  display: inline-block;
+  background: currentColor;
+  -webkit-mask: url("../images/brand/ri_send-ins-line.svg")
+    center / contain no-repeat;
+  mask: url("../images/brand/ri_send-ins-line.svg")
+    center / contain no-repeat;
+}

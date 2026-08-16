@@ -1,117 +1,161 @@
-/* =========================
-   FAQ (Improved: cloud hint + chevron + open state)
-   ========================= */
+/* Canonical TX-SaaS styles — consolidated from approved visual state. */
 
-.tx-faq{
+.tx-faq {
   margin-top: 18px;
-  display:grid;
+  display: grid;
   gap: 12px;
 }
 
-.tx-faqItem{
-  background:#fff;
+.tx-faqItem {
+  background: #fff;
   border: 1px solid rgba(230,234,242,.95);
   border-radius: var(--tx-radius-lg);
   box-shadow: var(--tx-shadow-soft);
-  padding: 0;              /* نخلي البادنج داخل summary/body */
-  overflow:hidden;
+  padding: 0;
+  overflow: hidden;
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-/* تمييز عند hover */
-.tx-faqItem:hover{
+.tx-faqItem:hover {
   border-color: rgba(18,120,243,.28);
   box-shadow: var(--tx-shadow);
 }
 
-/* حالة الفتح */
-.tx-faqItem[open]{
+.tx-faqItem[open] {
   border-color: rgba(18,120,243,.38);
   box-shadow: 0 16px 42px rgba(15,23,42,.10);
 }
 
-/* رأس السؤال */
-.tx-faqItem summary{
-  cursor:pointer;
+.tx-faqItem summary {
+  cursor: pointer;
   font-weight: 900;
-  list-style:none;
-  padding: 16px 56px 16px 16px; /* مساحة للسهم في اليسار */
+  list-style: none;
+  padding: 16px 56px 16px 16px;
   position: relative;
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   gap: 12px;
   color: rgba(15,23,42,.92);
-  user-select:none;
+  user-select: none;
 }
 
-.tx-faqItem summary::-webkit-details-marker{ display:none; }
+.tx-faqItem summary::-webkit-details-marker {
+  display: none;
+}
 
-/* ✅ سحابة صغيرة كـ hint (بدون تعديل HTML) */
-.tx-faqItem summary::before{
-  content:"";
+.tx-faqItem summary::before {
+  content: "";
   width: 40px;
   height: 40px;
   border-radius: 999px;
   flex: 0 0 auto;
-
-  background: linear-gradient(135deg, var(--tx-primary), var(--tx-deep));
-  box-shadow: 0 10px 22px rgba(18,120,243,.20);
-
-  /* cloud icon via mask */
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19H6a4 4 0 0 1 0-8 5.5 5.5 0 0 1 10.5-2.1A3.5 3.5 0 1 1 17.5 19Z'/%3E%3C/svg%3E") center / 72% no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19H6a4 4 0 0 1 0-8 5.5 5.5 0 0 1 10.5-2.1A3.5 3.5 0 1 1 17.5 19Z'/%3E%3C/svg%3E") center / 72% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17.5 19H6a4 4 0 0 1 0-8 5.5 5.5 0 0 1 10.5-2.1A3.5 3.5 0 1 1 17.5 19Z'/%3E%3C/svg%3E") center / 72% no-repeat;
 }
 
-/* ✅ سهم فتح/إغلاق */
-.tx-faqItem summary::after{
-  content:"";
-  position:absolute;
-  inset-inline-start: 16px;         /* عند اليسار لأن RTL */
+.tx-faqItem summary::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 16px;
   top: 50%;
   transform: translateY(-50%) rotate(0deg);
   width: 34px;
   height: 34px;
   border-radius: 999px;
-
   background: rgba(246,247,251,.85);
   border: 1px solid rgba(230,234,242,.95);
   box-shadow: 0 10px 20px rgba(15,23,42,.06);
-
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18l6-6-6-6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 54% no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18l6-6-6-6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 54% no-repeat;
-
-  /* اللون */
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 18l6-6-6-6' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 54% no-repeat;
   background-color: rgba(15,23,42,.82);
   opacity: .75;
-
   transition: transform .2s ease, opacity .2s ease, background-color .2s ease;
 }
 
-/* عند الفتح: تدوير السهم */
-.tx-faqItem[open] summary::after{
+.tx-faqItem[open] summary::after {
   transform: translateY(-50%) rotate(-90deg);
   opacity: .9;
   background-color: var(--tx-primary);
 }
 
-/* نص الإجابة */
-.tx-faqItem__a{
+.tx-faqItem__a {
   padding: 0 16px 16px 16px;
   color: var(--tx-muted);
   font-size: 14px;
   line-height: 1.9;
 }
 
-/* خط فاصل بسيط بين الرأس والمحتوى عند الفتح */
-.tx-faqItem[open] .tx-faqItem__a{
+.tx-faqItem[open] .tx-faqItem__a {
   border-top: 1px solid rgba(230,234,242,.85);
   padding-top: 12px;
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) {
   .tx-faqItem,
-  .tx-faqItem summary::after{
+  .tx-faqItem summary::after {
     transition: none;
   }
+}
+
+.tx-faq {
+  padding-block: var(--tx-section-y) !important;
+}
+
+.tx-faq {
+  padding-top: var(--tx-section-y) !important;
+  padding-bottom: var(--tx-section-y) !important;
+}
+
+.tx-faq {
+  font-size: 15.5px !important;
+}
+
+.tx-faq p {
+  font-size: 15.5px !important;
+}
+
+.tx-faq button {
+  font-size: 15.5px !important;
+}
+
+.tx-faq summary {
+  font-size: 15.5px !important;
+}
+
+.tx-faq button {
+  font-weight: 500 !important;
+}
+
+.tx-faq summary {
+  font-weight: 500 !important;
+}
+
+.tx-faqItem summary::before {
+  background: #4274B6 !important;
+  background-image: none !important;
+  box-shadow: 0 8px 18px rgba(66,116,182,.17) !important;
+}
+
+#faq .tx-faq {
+  margin-top: 10px !important;
+  padding-top: 0 !important;
+}
+
+#faq .tx-sectionHead + .tx-faq {
+  margin-top: 10px !important;
+  padding-top: 0 !important;
+}
+
+@media (max-width: 640px) {
+  #faq .tx-faq {
+    margin-top: 8px !important;
+  }
+
+  #faq .tx-sectionHead + .tx-faq {
+    margin-top: 8px !important;
+  }
+}
+
+.tx-faq {
+  padding-inline: 0 !important;
 }

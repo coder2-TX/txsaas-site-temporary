@@ -28,11 +28,6 @@
     rel="stylesheet"
     href="{{ asset('assets/css/style.css') }}"
   />
-
-  <link
-    rel="stylesheet"
-    href="{{ asset('assets/css/tx-design-overrides.css') }}"
-  />
 </head>
 
 <body class="tx-contact-page-body tx-contact-v10-body">

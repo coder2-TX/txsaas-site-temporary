@@ -1,33 +1,24 @@
-/* =========================
-   Work (New style: dark cards + cloud cap)
-   ========================= */
+/* Canonical TX-SaaS styles — consolidated from approved visual state. */
 
-.tx-workGrid{
+.tx-workGrid {
   margin-top: 18px;
-  display:grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 
-/* Card */
-.tx-workCard{
+.tx-workCard {
   position: relative;
-  padding: 34px 18px 18px; /* مساحة أعلى للكاب */
+  padding: 34px 18px 18px;
   border-radius: var(--tx-radius-lg);
-  background: #4274B6;
-  border: 1px solid rgba(18,120,243,.18);
-  box-shadow: 0 18px 44px rgba(2, 10, 25, .22);
   overflow: visible;
 }
 
-.tx-workCard:hover{
+.tx-workCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 22px 54px rgba(2, 10, 25, .28);
-  border-color: rgba(18,120,243,.35);
 }
 
-/* ✅ Cloud cap (the "قُصّة" but cloud-shaped) */
-.tx-workCap{
+.tx-workCap {
   position: absolute;
   inset-block-start: -22px;
   inset-inline-start: 50%;
@@ -37,122 +28,218 @@
   pointer-events: none;
 }
 
-.tx-workCap__cloud{
-  position:absolute;
+.tx-workCap__cloud {
+  position: absolute;
   inset: 0;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   filter: drop-shadow(0 10px 18px rgba(2,10,25,.18));
 }
 
-.tx-workCap__icon{
-  position:absolute;
+.tx-workCap__icon {
+  position: absolute;
   inset-block-start: 50%;
   inset-inline-start: 50%;
   transform: translate(-50%, -50%);
   width: 38px;
   height: 38px;
   border-radius: 999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background: #4274B6;
-  border: 4px solid rgba(255,255,255,.95); /* حلقة بيضاء مثل الستايل */
-  box-shadow: 0 12px 22px rgba(18,120,243,.22);
-
-  overflow: hidden;     /* ✅ مهم للصور */
-  line-height: 0;       /* ✅ يمنع أي فراغ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  line-height: 0;
 }
 
-.tx-workCap__icon svg{
+.tx-workCap__icon svg {
   width: 18px;
   height: 18px;
-  display:block;
-  color:#fff;
+  display: block;
+  color: #fff;
 }
 
-/* ✅ دعم الأيقونة كصورة (png/svg/webp/jpg) وتلوينها أبيض */
-.tx-workCap__icon img{
+.tx-workCap__icon img {
   width: 18px;
   height: 18px;
-  display:block;
+  display: block;
   object-fit: contain;
-
-  /* ✅ يحول الأيقونات السوداء إلى أبيض داخل الدائرة */
   filter: brightness(0) invert(1);
 }
 
-/* Tag */
-.tx-workCard__tag{
-  display:inline-flex;
+.tx-workCard__tag {
+  display: inline-flex;
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 900;
-  color: rgba(255,255,255,.92);
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.14);
 }
 
-/* Title / desc */
-.tx-workCard__t{
+.tx-workCard__t {
   margin: 12px 0 6px;
-  font-weight: 900;
   font-size: 16px;
-  color: rgba(255,255,255,.96);
 }
-.tx-workCard__d{
-  margin:0 0 12px;
-  color: rgba(230, 238, 255, .74);
+
+.tx-workCard__d {
+  margin: 0 0 12px;
   font-size: 14px;
   line-height: 1.8;
 }
 
-/* Meta chips */
-.tx-workCard__meta{
-  display:flex;
+.tx-workCard__meta {
+  display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
-.tx-workCard__meta span{
+
+.tx-workCard__meta span {
   font-size: 12px;
   padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
-  color: rgba(255,255,255,.88);
 }
 
-/* ✅ Smooth hover for the cloud cap */
 .tx-workCap,
 .tx-workCap__cloud,
-.tx-workCap__icon{
+.tx-workCap__icon {
   transition: transform .22s ease, filter .22s ease, box-shadow .22s ease, border-color .22s ease, opacity .22s ease;
 }
 
-/* Hover: cloud goes up + glow */
-.tx-workCard:hover .tx-workCap{
+.tx-workCard:hover .tx-workCap {
   transform: translateX(-50%) translateY(-4px);
 }
 
-.tx-workCard:hover .tx-workCap__cloud{
+.tx-workCard:hover .tx-workCap__cloud {
   filter: drop-shadow(0 14px 24px rgba(18,120,243,.18))
           drop-shadow(0 10px 18px rgba(2,10,25,.16));
 }
 
-.tx-workCard:hover .tx-workCap__icon{
-  box-shadow:
-    0 16px 28px rgba(18,120,243,.26),
+.tx-workCard:hover .tx-workCap__icon {
+  box-shadow: 0 16px 28px rgba(18,120,243,.26),
     0 0 0 6px rgba(18,120,243,.10);
   border-color: rgba(255,255,255,1);
   transform: translate(-50%, -50%) scale(1.04);
 }
 
-/* Responsive */
-@media (max-width: 980px){
-  .tx-workGrid{ grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 980px) {
+  .tx-workGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-@media (max-width: 760px){
-  .tx-workGrid{ grid-template-columns: 1fr; }
+
+@media (max-width: 760px) {
+  .tx-workGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tx-work {
+  padding-block: var(--tx-section-y) !important;
+}
+
+.tx-work {
+  padding-top: var(--tx-section-y) !important;
+  padding-bottom: var(--tx-section-y) !important;
+}
+
+.tx-work [class*="icon"] {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #4274B6 !important;
+}
+
+.tx-work [class*="badge"] {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #4274B6 !important;
+}
+
+.tx-work [class*="tag"] {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #4274B6 !important;
+}
+
+.tx-work [class*="type"] {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #4274B6 !important;
+}
+
+.tx-work [class*="icon"] svg {
+  color: #FFFFFF !important;
+  fill: currentColor;
+}
+
+.tx-workCard {
+  background: #fff !important;
+  border: 1px solid #E1E8F1 !important;
+  box-shadow: 0 10px 26px rgba(16,32,51,.07) !important;
+}
+
+.tx-workCard:hover {
+  border-color: rgba(66,116,182,.24) !important;
+  box-shadow: 0 15px 34px rgba(16,32,51,.09) !important;
+}
+
+.tx-workCap__cloud path {
+  fill: #fff !important;
+  stroke: rgba(66,116,182,.18) !important;
+}
+
+.tx-workCap__icon {
+  background: #4274B6 !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: 0 10px 21px rgba(66,116,182,.20) !important;
+}
+
+.tx-workCard__tag {
+  color: #fff !important;
+  background: #4274B6 !important;
+  background-image: none !important;
+  border: 0 !important;
+  font-weight: 500 !important;
+}
+
+.tx-workCard__t {
+  color: #102033 !important;
+  font-weight: 500 !important;
+}
+
+.tx-workCard__d {
+  color: #68788D !important;
+}
+
+.tx-workCard__meta span {
+  color: #52657D !important;
+  background: #F5F8FC !important;
+  background-image: none !important;
+  border: 0 !important;
+  font-weight: 400 !important;
+}
+
+.tx-work {
+  padding-inline: 0 !important;
+}
+
+#work .tx-workCard__t {
+  margin-top: 10px !important;
+}
+
+#work .tx-workGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+@media (max-width: 980px) {
+  #work .tx-workGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  #work .tx-workGrid {
+    grid-template-columns: 1fr !important;
+  }
 }

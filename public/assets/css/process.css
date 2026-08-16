@@ -1,39 +1,69 @@
-/* Steps */
-.tx-steps{
+/* Canonical TX-SaaS styles — consolidated from approved visual state. */
+
+.tx-steps {
   margin: 18px 0 0;
-  padding:0;
-  list-style:none;
-  display:grid;
+  padding: 0;
+  list-style: none;
+  display: grid;
   gap: 12px;
 }
-.tx-step{
-  display:flex;
+
+.tx-step {
+  display: flex;
   gap: 12px;
-  align-items:flex-start;
-  background:#fff;
+  align-items: flex-start;
+  background: #fff;
   border: 1px solid var(--tx-border);
   border-radius: var(--tx-radius-lg);
   box-shadow: var(--tx-shadow-soft);
   padding: 14px 16px;
 }
-.tx-step__n{
+
+.tx-step__n {
   width: 38px;
   height: 38px;
   border-radius: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(18,120,243,.10);
   border: 1px solid rgba(18,120,243,.18);
   color: var(--tx-deep);
   font-weight: 900;
   flex: 0 0 auto;
 }
-.tx-step__t{
+
+.tx-step__t {
   font-weight: 900;
   margin-bottom: 4px;
 }
-.tx-step__d{
+
+.tx-step__d {
   color: var(--tx-muted);
   font-size: 14px;
+}
+
+.tx-process {
+  padding-block: var(--tx-section-y) !important;
+}
+
+.tx-process {
+  padding-top: var(--tx-section-y) !important;
+  padding-bottom: var(--tx-section-y) !important;
+}
+
+.tx-process [class*="icon"] {
+  background-color: #4274B6 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #4274B6 !important;
+}
+
+.tx-process [class*="icon"] svg {
+  color: #FFFFFF !important;
+  fill: currentColor;
+}
+
+.tx-process {
+  padding-inline: 0 !important;
 }
