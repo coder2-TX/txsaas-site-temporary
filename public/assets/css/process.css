@@ -1,69 +1,158 @@
-/* Canonical TX-SaaS styles — consolidated from approved visual state. */
+/* TX-SaaS Process section — canonical staggered layout. */
 
-.tx-steps {
-  margin: 18px 0 0;
-  padding: 0;
+.tx-processSection {
+  overflow: hidden;
+}
+
+.tx-processHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tx-processHead .tx-h2 {
+  margin: 0 !important;
+}
+
+.tx-processHead__pattern {
+  display: block;
+  width: clamp(150px, 12vw, 200px);
+  margin-top: 16px;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.tx-processHead__pattern img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tx-processHead__sub {
+  max-width: 780px;
+  margin: 12px auto 0;
+  color: var(--tx-muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.tx-processSteps {
+  margin: clamp(58px, 6vw, 92px) 0 0;
+  padding: 0 0 96px;
   list-style: none;
   display: grid;
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(38px, 5vw, 78px);
+  row-gap: clamp(64px, 7vw, 104px);
+  align-items: start;
 }
 
-.tx-step {
+.tx-processStep {
+  min-width: 0;
   display: flex;
-  gap: 12px;
   align-items: flex-start;
-  background: #fff;
-  border: 1px solid var(--tx-border);
-  border-radius: var(--tx-radius-lg);
-  box-shadow: var(--tx-shadow-soft);
-  padding: 14px 16px;
+  gap: 18px;
+  padding: 0 0 24px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(66, 116, 182, 0.16);
+  box-shadow: none;
 }
 
-.tx-step__n {
-  width: 38px;
-  height: 38px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(18,120,243,.10);
-  border: 1px solid rgba(18,120,243,.18);
-  color: var(--tx-deep);
-  font-weight: 900;
-  flex: 0 0 auto;
+.tx-processStep:nth-child(2),
+.tx-processStep:nth-child(5) {
+  transform: translateY(48px);
 }
 
-.tx-step__t {
-  font-weight: 900;
-  margin-bottom: 4px;
+.tx-processStep:nth-child(3) {
+  transform: translateY(96px);
 }
 
-.tx-step__d {
-  color: var(--tx-muted);
+.tx-processStep__number {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgb(66 116 182 / 40%);
+  border: 0;
+  color: #111111;
   font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
 }
 
-.tx-process {
-  padding-block: var(--tx-section-y) !important;
+.tx-processStep__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
-.tx-process {
-  padding-top: var(--tx-section-y) !important;
-  padding-bottom: var(--tx-section-y) !important;
+.tx-processStep__title {
+  margin: 0 !important;
+  color: #102033 !important;
+  font-size: clamp(17px, 1.35vw, 19px) !important;
+  font-weight: 900 !important;
+  line-height: 1.28 !important;
 }
 
-.tx-process [class*="icon"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
+.tx-processStep__text {
+  margin: 0 !important;
+  color: var(--tx-muted);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
-.tx-process [class*="icon"] svg {
-  color: #FFFFFF !important;
-  fill: currentColor;
+@media (max-width: 980px) {
+  .tx-processSteps {
+    margin-top: 48px;
+    padding-bottom: 48px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 42px;
+  }
+
+  .tx-processStep:nth-child(n) {
+    transform: none;
+  }
+
+  .tx-processStep:nth-child(even) {
+    transform: translateY(30px);
+  }
 }
 
-.tx-process {
-  padding-inline: 0 !important;
+@media (max-width: 640px) {
+  .tx-processHead__pattern {
+    width: 160px;
+  }
+
+  .tx-processHead__sub {
+    max-width: 34rem;
+  }
+
+  .tx-processSteps {
+    margin-top: 42px;
+    padding-bottom: 0;
+    grid-template-columns: 1fr;
+    row-gap: 26px;
+  }
+
+  .tx-processStep:nth-child(n) {
+    transform: none;
+  }
+
+  .tx-processStep {
+    gap: 14px;
+    padding-bottom: 20px;
+  }
+
+  .tx-processStep__number {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+    font-size: 13px;
+  }
 }

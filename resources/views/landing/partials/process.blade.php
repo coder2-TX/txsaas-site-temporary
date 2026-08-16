@@ -1,4 +1,4 @@
-<section class="tx-section" id="process">
+<section class="tx-section tx-processSection" id="process">
   @php
     $legacyDefaults = [
       'subtitle' => 'خطوات واضحة من التحليل حتى الإطلاق — بدون ضياع وقت.',
@@ -65,19 +65,31 @@
   @endphp
 
   <div class="tx-container">
-    <div class="tx-sectionHead">
+    <header class="tx-processHead">
       <h2 class="tx-h2">من الفكرة إلى الإطلاق</h2>
-      <p class="tx-sub">{{ $subtitle }}</p>
-    </div>
 
-    <ol class="tx-steps">
+      <span class="tx-processHead__pattern" aria-hidden="true">
+        <img
+          src="{{ asset('assets/images/brand/pattern-line.svg') }}"
+          alt=""
+          width="200"
+          height="32"
+          loading="lazy"
+          decoding="async"
+        >
+      </span>
+
+      <p class="tx-processHead__sub">{{ $subtitle }}</p>
+    </header>
+
+    <ol class="tx-processSteps">
       @foreach ($steps as $i => $s)
-        <li class="tx-step">
-          <span class="tx-step__n">{{ $i + 1 }}</span>
+        <li class="tx-processStep">
+          <span class="tx-processStep__number" aria-hidden="true">{{ $i + 1 }}</span>
 
-          <div class="tx-step__c">
-            <div class="tx-step__t">{{ $s['t'] }}</div>
-            <div class="tx-step__d">{{ $s['d'] }}</div>
+          <div class="tx-processStep__content">
+            <h3 class="tx-processStep__title">{{ $s['t'] }}</h3>
+            <p class="tx-processStep__text">{{ $s['d'] }}</p>
           </div>
         </li>
       @endforeach
