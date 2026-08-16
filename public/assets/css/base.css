@@ -454,14 +454,6 @@ html {
   color: #FFFFFF !important;
   border-color: #4274B6 !important;
 }
-
-[class*="service"] [class*="icon"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
-}
-
 [class*="process"] [class*="icon"] {
   background-color: #4274B6 !important;
   background-image: none !important;
