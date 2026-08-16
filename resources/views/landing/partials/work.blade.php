@@ -1,4 +1,4 @@
-<section class="tx-section tx-section--soft" id="work">
+<section class="tx-section tx-section--soft tx-productsSection" id="work">
   @php
     use Illuminate\Support\Facades\Storage;
 
@@ -187,42 +187,53 @@ SVG,
   @endphp
 
   <div class="tx-container">
-    <div class="tx-sectionHead">
+    <header class="tx-productsHead">
       <h2 class="tx-h2">منتجاتنا</h2>
-      <p class="tx-sub">منتجات رقمية متخصصة تساعد الشركات على تنظيم التشغيل وإدارة الخدمات ورفع كفاءة العمل، مع قابلية التخصيص حسب الاحتياج.</p>
-    </div>
 
-    <div class="tx-workGrid">
-      @foreach ($cards as $card)
-        <article class="tx-workCard">
-          <div class="tx-workCap" aria-hidden="true">
-            <svg class="tx-workCap__cloud" viewBox="0 0 92 62">
-              <path
-                d="M67 48H26C15 48 6 39.5 6 29.5C6 20.7 12.5 13.4 21.1 12.1C24.2 5.3 31 1 38.9 1C49 1 57.9 8.1 60.1 17.8C61.8 17 63.7 16.6 65.8 16.6C73.6 16.6 80 22.9 80 30.7C80 40.2 74.2 48 67 48Z"
-                fill="rgba(255,255,255,.96)"
-                stroke="rgba(18,120,243,.25)"
-                stroke-width="1.2"
-                stroke-linejoin="round"
-              />
-            </svg>
+      <span class="tx-productsHead__pattern" aria-hidden="true">
+        <img
+          src="{{ asset('assets/images/brand/pattern-line.svg') }}"
+          alt=""
+          width="200"
+          height="32"
+          loading="lazy"
+          decoding="async"
+        >
+      </span>
 
-            <span class="tx-workCap__icon">
+      <p class="tx-productsHead__sub">منتجات رقمية متخصصة تساعد الشركات على تنظيم التشغيل وإدارة الخدمات ورفع كفاءة العمل، مع قابلية التخصيص حسب الاحتياج.</p>
+    </header>
+
+    <div class="tx-productsGrid">
+      @foreach ($cards as $i => $card)
+        <article class="tx-productTile">
+          <div class="tx-productTile__top">
+            <span class="tx-productTile__mark" aria-hidden="true">
               @if (!empty($card['icon_url']))
-                <img class="tx-workIconImg" src="{{ $card['icon_url'] }}" alt="" loading="lazy" decoding="async">
+                <img class="tx-productMarkImage" src="{{ $card['icon_url'] }}" alt="" loading="lazy" decoding="async">
               @else
                 {!! $card['icon_svg'] !!}
               @endif
             </span>
+
+            <span class="tx-productTile__index" aria-hidden="true">
+              {{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}
+            </span>
           </div>
 
-          <h3 class="tx-workCard__t">{{ $card['title'] }}</h3>
-          <p class="tx-workCard__d">{{ $card['description'] }}</p>
-
-          <div class="tx-workCard__meta">
-            @foreach ($card['meta'] as $m)
-              <span>{{ $m }}</span>
-            @endforeach
+          <div class="tx-productTile__body">
+            <p class="tx-productTile__eyebrow">{{ $card['tag'] }}</p>
+            <h3 class="tx-productTile__title">{{ $card['title'] }}</h3>
+            <p class="tx-productTile__text">{{ $card['description'] }}</p>
           </div>
+
+          @if (!empty($card['meta']))
+            <div class="tx-productTile__meta">
+              @foreach ($card['meta'] as $m)
+                <span>{{ $m }}</span>
+              @endforeach
+            </div>
+          @endif
         </article>
       @endforeach
     </div>

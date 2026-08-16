@@ -426,34 +426,6 @@ html {
 .hero-title span {
   line-height: 1.27 !important;
 }
-
-[class*="work"] [class*="icon"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
-}
-
-[class*="work"] [class*="badge"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
-}
-
-[class*="work"] [class*="tag"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
-}
-
-[class*="work"] [class*="type"] {
-  background-color: #4274B6 !important;
-  background-image: none !important;
-  color: #FFFFFF !important;
-  border-color: #4274B6 !important;
-}
 [class*="process"] [class*="icon"] {
   background-color: #4274B6 !important;
   background-image: none !important;
