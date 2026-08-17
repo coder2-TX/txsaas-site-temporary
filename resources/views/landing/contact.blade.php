@@ -30,230 +30,257 @@
   />
 </head>
 
-<body class="tx-contact-page-body tx-contact-v10-body">
+<body class="tx-contact-page-body">
   @include('landing.partials.header')
 
-  <main class="tx-contact-v10">
-    <section class="tx-contact-v10__hero">
+  <main class="tx-contactPage">
+    <section class="tx-section tx-contactPage__section">
       <div class="tx-container">
-        <div class="tx-contact-v10__heroInner">
-          <span class="tx-contact-v10__eyebrow">
-            تواصل معنا
-          </span>
+        <div class="tx-contactPage__layout">
+          <div class="tx-contactPage__content">
+            <div class="tx-contactPage__intro">
+              <h1 class="tx-h2 tx-contactPage__title">
+                تواصل معنا
+              </h1>
 
-          <h1>
-            خلّنا نبدأ من فكرتك.
-          </h1>
+              <span class="tx-contactPage__pattern" aria-hidden="true">
+                <img
+                  src="{{ asset('assets/images/brand/pattern-line.svg') }}"
+                  alt=""
+                />
+              </span>
 
-          <p>
-            اكتب لنا ما تحتاجه بشكل مختصر، وسنرجع لك بصورة أوضح عن نطاق العمل
-            والخطوة التالية والتقدير المبدئي للمشروع.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="tx-contact-v10__section">
-      <div class="tx-container">
-        <form class="tx-contact-v10__form" autocomplete="on">
-          <div class="tx-contact-v10__grid">
-            <label class="tx-contact-v10__field">
-              <span>الاسم</span>
-
-              <input
-                type="text"
-                name="name"
-                placeholder="اكتب اسمك"
-                autocomplete="name"
-              />
-            </label>
-
-            <label class="tx-contact-v10__field">
-              <span>البريد الإلكتروني</span>
-
-              <input
-                type="email"
-                name="email"
-                placeholder="name@example.com"
-                autocomplete="email"
-                dir="ltr"
-              />
-            </label>
-
-            <label class="tx-contact-v10__field tx-contact-v10__field--full">
-              <span>نوع المشروع</span>
-
-              <div
-  class="tx-contact-v10__customSelect"
-  data-tx-contact-select
->
-  <input
-    type="hidden"
-    name="project_type"
-    value=""
-    data-tx-contact-select-input
-  />
-
-  <button
-    class="tx-contact-v10__selectTrigger"
-    type="button"
-    aria-haspopup="listbox"
-    aria-expanded="false"
-    data-tx-contact-select-trigger
-  >
-    <span
-      class="tx-contact-v10__selectValue is-placeholder"
-      data-tx-contact-select-value
-    >
-      اختر نوع المشروع
-    </span>
-
-    <svg
-      class="tx-contact-v10__selectChevron"
-      viewBox="0 0 20 20"
-      aria-hidden="true"
-    >
-      <path
-        d="M5.5 7.5 10 12l4.5-4.5"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </button>
-
-  <div
-    class="tx-contact-v10__selectMenu"
-    role="listbox"
-  >
-    <button
-      class="tx-contact-v10__selectOption is-selected"
-      type="button"
-      role="option"
-      aria-selected="true"
-      data-value=""
-      data-tx-contact-select-option
-    >
-      اختر نوع المشروع
-    </button>
-
-    <button
-      class="tx-contact-v10__selectOption"
-      type="button"
-      role="option"
-      aria-selected="false"
-      data-value="saas"
-      data-tx-contact-select-option
-    >
-      منتج SaaS
-    </button>
-
-    <button
-      class="tx-contact-v10__selectOption"
-      type="button"
-      role="option"
-      aria-selected="false"
-      data-value="business-system"
-      data-tx-contact-select-option
-    >
-      نظام أعمال
-    </button>
-
-    <button
-      class="tx-contact-v10__selectOption"
-      type="button"
-      role="option"
-      aria-selected="false"
-      data-value="website"
-      data-tx-contact-select-option
-    >
-      موقع أو منصة
-    </button>
-
-    <button
-      class="tx-contact-v10__selectOption"
-      type="button"
-      role="option"
-      aria-selected="false"
-      data-value="api"
-      data-tx-contact-select-option
-    >
-      Backend / APIs
-    </button>
-
-    <button
-      class="tx-contact-v10__selectOption"
-      type="button"
-      role="option"
-      aria-selected="false"
-      data-value="other"
-      data-tx-contact-select-option
-    >
-      أخرى
-    </button>
-  </div>
-</div>
-            </label>
-
-            <label class="tx-contact-v10__field tx-contact-v10__field--full">
-              <span>وصف مختصر</span>
-
-              <textarea
-                name="description"
-                rows="6"
-                placeholder="اكتب الفكرة والمتطلبات الرئيسية..."
-              ></textarea>
-            </label>
-          </div>
-
-          <div class="tx-contact-v10__submitWrap">
-            <button
-              class="tx-btn tx-btn--primary tx-contact-v10__submit"
-              type="button"
-            >
-              <span class="tx-send-icon" aria-hidden="true"></span>
-              <span>إرسال المتطلبات</span>
-            </button>
-          </div>
-        </form>
-
-        <div class="tx-contact-v10__direct" aria-label="بيانات التواصل">
-          <div class="tx-contact-v10__directItem">
-            <div class="tx-contact-v10__iconHolder">
-              <span class="tx-contact-v10__emailIcon" aria-hidden="true"></span>
+              <p class="tx-contactPage__text">
+                اكتب لنا ما تحتاجه بشكل مختصر وواضح، وشاركنا فكرة المشروع أو
+                التحدي الذي ترغب في حله والمتطلبات الأساسية التي تتوقعها.
+                سنراجع التفاصيل ونتواصل معك بصورة أوضح حول نطاق العمل، الحل
+                المناسب، الخطوة التالية، والمدة والتقدير المبدئي للمشروع، حتى
+                تكون بداية التنفيذ مبنية على تصور واضح من الطرفين.
+              </p>
             </div>
 
-            <span class="tx-contact-v10__directLabel">
-              البريد الإلكتروني
-            </span>
+            <div class="tx-contactPage__direct" aria-label="بيانات التواصل">
+              <div class="tx-contactPage__infoItem">
+                <div class="tx-contactPage__iconShell">
+                  <span class="tx-contactPage__emailIcon" aria-hidden="true"></span>
+                </div>
 
-            <a
-              class="tx-contact-v10__directValue"
-              href="mailto:Info@travel-x.online"
-              dir="ltr"
-            >
-              Info@travel-x.online
-            </a>
+                <div class="tx-contactPage__infoContent">
+                  <span class="tx-contactPage__infoTitle">
+                    البريد الإلكتروني
+                  </span>
+
+                  <a
+                    class="tx-contactPage__infoValue"
+                    href="mailto:Info@travel-x.online"
+                    dir="ltr"
+                  >
+                    Info@travel-x.online
+                  </a>
+                </div>
+              </div>
+
+              <div class="tx-contactPage__infoItem">
+                <div class="tx-contactPage__iconShell">
+                  <span class="tx-call-icon" aria-hidden="true"></span>
+                </div>
+
+                <div class="tx-contactPage__infoContent">
+                  <span class="tx-contactPage__infoTitle">
+                    الاتصال
+                  </span>
+
+                  <a
+                    class="tx-contactPage__infoValue"
+                    href="tel:+967783939666"
+                    dir="ltr"
+                  >
+                    +967783939666
+                  </a>
+                </div>
+              </div>
+              <div class="tx-contactPage__infoItem">
+                <div class="tx-contactPage__iconShell">
+                  <span class="tx-contactPage__locationIcon" aria-hidden="true"></span>
+                </div>
+
+                <div class="tx-contactPage__infoContent">
+                  <span class="tx-contactPage__infoTitle">
+                    الموقع
+                  </span>
+
+                  <span class="tx-contactPage__infoValue">
+                    اليمن، صنعاء
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="tx-contact-v10__directItem">
-            <div class="tx-contact-v10__iconHolder">
-              <span class="tx-call-icon" aria-hidden="true"></span>
-            </div>
+          <div class="tx-contactPage__formCard">
+            <form class="tx-contactPage__form" autocomplete="on">
+              <div class="tx-contactPage__grid">
+                <label class="tx-contactPage__field">
+                  <span>الاسم</span>
 
-            <span class="tx-contact-v10__directLabel">
-              الاتصال
-            </span>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="اكتب اسمك"
+                    autocomplete="name"
+                  />
+                </label>
 
-            <a
-              class="tx-contact-v10__directValue"
-              href="tel:+967783939666"
-              dir="ltr"
-            >
-              +967783939666
-            </a>
+                <label class="tx-contactPage__field">
+                  <span>البريد الإلكتروني</span>
+
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="name@example.com"
+                    autocomplete="email"
+                    dir="ltr"
+                  />
+                </label>
+
+                <label class="tx-contactPage__field tx-contactPage__field--full">
+                  <span>نوع المشروع</span>
+
+                  <div
+                    class="tx-contactPage__customSelect"
+                    data-tx-contact-select
+                  >
+                    <input
+                      type="hidden"
+                      name="project_type"
+                      value=""
+                      data-tx-contact-select-input
+                    />
+
+                    <button
+                      class="tx-contactPage__selectTrigger"
+                      type="button"
+                      aria-haspopup="listbox"
+                      aria-expanded="false"
+                      data-tx-contact-select-trigger
+                    >
+                      <span
+                        class="tx-contactPage__selectValue is-placeholder"
+                        data-tx-contact-select-value
+                      >
+                        اختر نوع المشروع
+                      </span>
+
+                      <svg
+                        class="tx-contactPage__selectChevron"
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M5.5 7.5 10 12l4.5-4.5"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+
+                    <div
+                      class="tx-contactPage__selectMenu"
+                      role="listbox"
+                    >
+                      <button
+                        class="tx-contactPage__selectOption is-selected"
+                        type="button"
+                        role="option"
+                        aria-selected="true"
+                        data-value=""
+                        data-tx-contact-select-option
+                      >
+                        اختر نوع المشروع
+                      </button>
+
+                      <button
+                        class="tx-contactPage__selectOption"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="saas"
+                        data-tx-contact-select-option
+                      >
+                        منتج SaaS
+                      </button>
+
+                      <button
+                        class="tx-contactPage__selectOption"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="business-system"
+                        data-tx-contact-select-option
+                      >
+                        نظام أعمال
+                      </button>
+
+                      <button
+                        class="tx-contactPage__selectOption"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="website"
+                        data-tx-contact-select-option
+                      >
+                        موقع أو منصة
+                      </button>
+
+                      <button
+                        class="tx-contactPage__selectOption"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="api"
+                        data-tx-contact-select-option
+                      >
+                        Backend / APIs
+                      </button>
+
+                      <button
+                        class="tx-contactPage__selectOption"
+                        type="button"
+                        role="option"
+                        aria-selected="false"
+                        data-value="other"
+                        data-tx-contact-select-option
+                      >
+                        أخرى
+                      </button>
+                    </div>
+                  </div>
+                </label>
+
+                <label class="tx-contactPage__field tx-contactPage__field--full">
+                  <span>وصف مختصر</span>
+
+                  <textarea
+                    name="description"
+                    rows="6"
+                    placeholder="اكتب الفكرة والمتطلبات الرئيسية..."
+                  ></textarea>
+                </label>
+              </div>
+
+              <div class="tx-contactPage__submitWrap">
+                <button
+                  class="tx-btn tx-btn--primary tx-contactPage__submit"
+                  type="button"
+                >
+                  <span class="tx-send-icon" aria-hidden="true"></span>
+                  <span>إرسال المتطلبات</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
