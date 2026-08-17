@@ -58,7 +58,7 @@
   padding: 24px;
   overflow: hidden;
   background: #FFFFFF;
-  border: 1px solid rgba(66, 116, 182, .14);
+  border: 0;
   border-radius: 20px;
   box-shadow: 0 10px 28px rgba(16, 32, 51, .055);
   transition:
@@ -186,7 +186,7 @@
 @media (hover: hover) and (pointer: fine) {
   .tx-productTile:hover {
     transform: translateY(-5px);
-    border-color: rgba(66, 116, 182, .26);
+    border-color: transparent;
     box-shadow: 0 16px 36px rgba(16, 32, 51, .085);
   }
 
@@ -271,6 +271,187 @@
   .tx-productTile,
   .tx-productTile::before,
   .tx-productTile__mark {
+    transition: none;
+  }
+}
+/* Websites showcase — connected image-only infinite rail. */
+
+.tx-sitesShowcase {
+  margin-top: clamp(58px, 6vw, 88px);
+  padding: clamp(20px, 2.4vw, 28px) 0;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(16, 32, 51, .05);
+}
+
+.tx-sitesMarquee {
+  position: relative;
+  overflow: hidden;
+  direction: ltr;
+}
+
+.tx-sitesMarquee::before,
+.tx-sitesMarquee::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  width: clamp(58px, 7vw, 118px);
+  pointer-events: none;
+}
+
+.tx-sitesMarquee::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #FFFFFF 0%,
+    rgba(255, 255, 255, .94) 22%,
+    rgba(255, 255, 255, .62) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.tx-sitesMarquee::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #FFFFFF 0%,
+    rgba(255, 255, 255, .94) 22%,
+    rgba(255, 255, 255, .62) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.tx-sitesMarquee__track {
+  --tx-sites-marquee-duration: 72s;
+
+  width: max-content;
+  display: flex;
+  flex-wrap: nowrap;
+  direction: ltr;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  animation: tx-sites-marquee var(--tx-sites-marquee-duration) linear infinite;
+}
+
+.tx-sitesMarquee__group {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  direction: ltr;
+  gap: 18px;
+  padding-right: 18px;
+}
+
+.tx-sitesMarquee:hover .tx-sitesMarquee__track,
+.tx-sitesMarquee:focus-within .tx-sitesMarquee__track {
+  animation-play-state: paused;
+}
+
+.tx-sitePreview {
+  width: clamp(286px, 25vw, 380px);
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
+  display: block;
+  overflow: hidden;
+  background: #F3F6FA;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 7px 20px rgba(16, 32, 51, .045);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.tx-sitePreview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  filter: none;
+  transition: transform 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tx-sitePreview:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: 0 13px 28px rgba(16, 32, 51, .075);
+  }
+
+  .tx-sitePreview:hover img {
+    transform: scale(1.015);
+  }
+}
+
+@keyframes tx-sites-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 980px) {
+  .tx-sitesShowcase {
+    padding-block: 20px;
+  }
+
+  .tx-sitesMarquee__track {
+    --tx-sites-marquee-duration: 62s;
+  }
+
+  .tx-sitePreview {
+    width: clamp(265px, 42vw, 340px);
+  }
+}
+
+@media (max-width: 640px) {
+  .tx-sitesShowcase {
+    margin-top: 46px;
+    padding-block: 16px;
+    border-radius: 20px;
+  }
+
+  .tx-sitesMarquee::before,
+  .tx-sitesMarquee::after {
+    width: 46px;
+  }
+
+  .tx-sitesMarquee__group {
+    gap: 14px;
+    padding-right: 14px;
+  }
+
+  .tx-sitesMarquee__track {
+    --tx-sites-marquee-duration: 54s;
+  }
+
+  .tx-sitePreview {
+    width: min(78vw, 306px);
+    border-radius: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tx-sitesMarquee__track {
+    animation-play-state: paused;
+  }
+
+  .tx-sitePreview,
+  .tx-sitePreview img {
     transition: none;
   }
 }

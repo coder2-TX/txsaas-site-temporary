@@ -186,6 +186,40 @@ SVG,
     });
   @endphp
 
+
+  @php
+    $websiteShowcase = [
+      [
+        'title' => 'Fly Yemen',
+        'domain' => 'fly-yemen.com',
+        'image' => asset('assets/images/website/fly-yemen.png'),
+        'url' => 'https://fly-yemen.com/',
+      ],
+      [
+        'title' => 'Athka Holidays',
+        'domain' => 'athkaholidays.com',
+        'image' => asset('assets/images/website/athkaholidays.png'),
+        'url' => 'https://athkaholidays.com/',
+      ],
+      [
+        'title' => 'ATA Yemen',
+        'domain' => 'ata-yemen.com',
+        'image' => asset('assets/images/website/ata-yemen.png'),
+        'url' => 'https://ata-yemen.com/',
+      ],
+    ];
+
+    /*
+     * مؤقتًا نكرر المواقع داخل المجموعة نفسها حتى يبقى الشريط ممتلئًا
+     * إلى أن تتم إضافة بقية أعمال الشركة.
+     */
+    $websiteShowcaseLoop = array_merge(
+      $websiteShowcase,
+      $websiteShowcase,
+      $websiteShowcase,
+      $websiteShowcase
+    );
+  @endphp
   <div class="tx-container">
     <header class="tx-productsHead">
       <h2 class="tx-h2">منتجاتنا</h2>
@@ -237,5 +271,31 @@ SVG,
         </article>
       @endforeach
     </div>
-  </div>
+    <div class="tx-sitesShowcase">
+      <div class="tx-sitesMarquee" aria-label="نماذج من المواقع التي نفذتها الشركة">
+        <div class="tx-sitesMarquee__track">
+          @foreach ([0, 1] as $copy)
+            <div class="tx-sitesMarquee__group" @if ($copy === 1) aria-hidden="true" @endif>
+              @foreach ($websiteShowcaseLoop as $site)
+                <a
+                  class="tx-sitePreview"
+                  href="{{ $site['url'] }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="فتح موقع {{ $site['title'] }}"
+                >
+                  <img
+                    src="{{ $site['image'] }}"
+                    alt="معاينة موقع {{ $site['title'] }}"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </a>
+              @endforeach
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </div>
+</div>
 </section>
