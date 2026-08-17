@@ -207,6 +207,18 @@ SVG,
         'image' => asset('assets/images/website/ata-yemen.png'),
         'url' => 'https://ata-yemen.com/',
       ],
+      [
+        'title' => 'Kiwi Travels',
+        'domain' => 'kiwitravels-ye.com',
+        'image' => asset('assets/images/website/Kiwi.png'),
+        'url' => 'https://kiwitravels-ye.com/',
+      ],
+      [
+        'title' => 'Destination Media',
+        'domain' => 'destination-media.pro',
+        'image' => asset('assets/images/website/destination.png'),
+        'url' => 'https://destination-media.pro/',
+      ],
     ];
 
     /*
@@ -235,39 +247,86 @@ SVG,
         >
       </span>
 
-      <p class="tx-productsHead__sub">منتجات رقمية متخصصة تساعد الشركات على تنظيم التشغيل وإدارة الخدمات ورفع كفاءة العمل، مع قابلية التخصيص حسب الاحتياج.</p>
+      <p class="tx-productsHead__sub">
+        حلول رقمية ذكية تساعد الشركات على تنظيم أعمالها وتحسين التشغيل،
+        وتشمل أنظمة متخصصة للسفر والمواعيد والمبيعات والموارد البشرية والمساعدات الذكية.
+      </p>
     </header>
 
-    <div class="tx-productsGrid">
-      @foreach ($cards as $i => $card)
-        <article class="tx-productTile">
-          <div class="tx-productTile__top">
-            <span class="tx-productTile__mark" aria-hidden="true">
-              @if (!empty($card['icon_url']))
-                <img class="tx-productMarkImage" src="{{ $card['icon_url'] }}" alt="" loading="lazy" decoding="async">
-              @else
-                {!! $card['icon_svg'] !!}
-              @endif
-            </span>
+    @php
+      /*
+       * Product cards follow the approved TX-SaaS catalog order/content.
+       * Existing HomeWorkItem activation still controls whether a product exists.
+       * The website-design item is a Service, not one of the five catalog products.
+       */
+      $txCatalogProducts = collect($cards)
+        ->map(function ($card) {
+          $rawTitle = trim((string) ($card['title'] ?? ''));
 
-            <span class="tx-productTile__index" aria-hidden="true">
-              {{ str_pad((string) ($i + 1), 2, '0', STR_PAD_LEFT) }}
-            </span>
-          </div>
+          $normalized = function_exists('mb_strtolower')
+            ? mb_strtolower($rawTitle, 'UTF-8')
+            : strtolower($rawTitle);
 
-          <div class="tx-productTile__body">
-            <p class="tx-productTile__eyebrow">{{ $card['tag'] }}</p>
-            <h3 class="tx-productTile__title">{{ $card['title'] }}</h3>
-            <p class="tx-productTile__text">{{ $card['description'] }}</p>
-          </div>
+          if (str_contains($normalized, 'طيران') || str_contains($normalized, 'tayra')) {
+            return [
+              'order' => 1,
+              'title' => 'نظام طيران',
+              'description' => 'نظام متكامل لإدارة خدمات السفر والسياحة، يساعد على تنظيم التأشيرات، النقل، والتأمين من خلال منصة واحدة سهلة الاستخدام.',
+            ];
+          }
 
-          @if (!empty($card['meta']))
-            <div class="tx-productTile__meta">
-              @foreach ($card['meta'] as $m)
-                <span>{{ $m }}</span>
-              @endforeach
-            </div>
-          @endif
+          if (str_contains($normalized, 'طابور') || str_contains($normalized, 'tabour')) {
+            return [
+              'order' => 2,
+              'title' => 'نظام طابور',
+              'description' => 'نظام ذكي لإدارة المواعيد والحجوزات، يمكّن المنشآت من تنظيم الحجوزات ومتابعة الحالات وخيارات الدفع بكفاءة أعلى.',
+            ];
+          }
+
+          if (str_contains($normalized, 'سفر') || str_contains($normalized, 'safar')) {
+            return [
+              'order' => 3,
+              'title' => 'نظام سفر إكس',
+              'description' => 'نظام مخصص لشركات السفريات لإدارة المبيعات والحجوزات والطلبات بكفاءة، وتنظيم العمل اليومي من منصة موحدة.',
+            ];
+          }
+
+          if (
+            str_contains($normalized, 'hr') ||
+            str_contains($normalized, 'أذكى') ||
+            str_contains($normalized, 'الموارد')
+          ) {
+            return [
+              'order' => 4,
+              'title' => 'نظام أذكى HR',
+              'description' => 'نظام متكامل لإدارة الموارد البشرية ينظّم بيانات الموظفين والحضور والإجازات والصلاحيات من منصة واحدة ذكية.',
+            ];
+          }
+
+          if (
+            str_contains($normalized, 'ai') ||
+            str_contains($normalized, 'bot')
+          ) {
+            return [
+              'order' => 5,
+              'title' => 'TX AI Bot',
+              'description' => 'مساعد ذكي يتكامل مع أي نظام ويفهم بياناته عبر قاعدة معرفة مخصصة، لتقديم خدمة أسرع وأكثر احترافية.',
+            ];
+          }
+
+          return null;
+        })
+        ->filter()
+        ->unique('order')
+        ->sortBy('order')
+        ->values();
+    @endphp
+
+    <div class="tx-productsCards">
+      @foreach ($txCatalogProducts as $card)
+        <article class="tx-productCard">
+          <h3 class="tx-productCard__title">{{ $card['title'] }}</h3>
+          <p class="tx-productCard__text">{{ $card['description'] }}</p>
         </article>
       @endforeach
     </div>
