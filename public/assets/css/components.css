@@ -12,9 +12,7 @@
   transform: translateY(1px);
 }
 
-.tx-btn--ghost:hover {
-  box-shadow: var(--tx-shadow-soft);
-}
+
 
 button {
   font-family: "Somar Sans",
@@ -65,7 +63,8 @@ input {
   color: #FFFFFF !important;
   background: var(--tx-primary-hover) !important;
   border-color: var(--tx-primary-hover) !important;
-  box-shadow: 0 16px 34px rgba(66, 116, 182, 0.26) !important;
+  box-shadow: 0 16px 34px rgba(66, 116, 182, 0.28) !important;
+  transform: translateY(-1px) !important;
 }
 
 .tx-btn--ghost {
@@ -77,6 +76,8 @@ input {
 .tx-btn--ghost:hover {
   color: var(--tx-primary) !important;
   border-color: rgba(66, 116, 182, 0.30) !important;
+  box-shadow: var(--tx-shadow-soft);
+  transform: translateY(-1px) !important;
 }
 
 input:not([type="checkbox"]):not([type="radio"]) {
