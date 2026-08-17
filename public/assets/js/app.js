@@ -449,3 +449,86 @@
   }
 })();
 /* TX_SAAS_CONTACT_CUSTOM_SELECT_V10_2_END */
+/* TX-SaaS floating contact visibility:
+   hidden only while the homepage Hero (#home) intersects the viewport. */
+(() => {
+  function initTxFloatingContactVisibility() {
+    const floatingContact = document.querySelector('.tx-floating-contact');
+    if (!floatingContact) return;
+
+    const homeHero = document.getElementById('home');
+
+    // Any non-home page, including /contact, keeps the floating button visible.
+    if (!homeHero) {
+      floatingContact.classList.remove('is-home-hero-hidden');
+      return;
+    }
+
+    const setHeroVisibilityState = (heroIsVisible) => {
+      floatingContact.classList.toggle(
+        'is-home-hero-hidden',
+        heroIsVisible
+      );
+    };
+
+    const syncFromGeometry = () => {
+      const rect = homeHero.getBoundingClientRect();
+      const heroIsVisible =
+        rect.bottom > 0 &&
+        rect.top < window.innerHeight;
+
+      setHeroVisibilityState(heroIsVisible);
+    };
+
+    // Correct initial state, including direct loads to /#services etc.
+    syncFromGeometry();
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry) return;
+          setHeroVisibilityState(entry.isIntersecting);
+        },
+        {
+          root: null,
+          threshold: 0,
+        }
+      );
+
+      observer.observe(homeHero);
+
+      window.addEventListener('pageshow', syncFromGeometry, {
+        passive: true,
+      });
+
+      window.addEventListener('resize', syncFromGeometry, {
+        passive: true,
+      });
+
+      return;
+    }
+
+    // Fallback only for browsers without IntersectionObserver.
+    window.addEventListener('scroll', syncFromGeometry, {
+      passive: true,
+    });
+
+    window.addEventListener('resize', syncFromGeometry, {
+      passive: true,
+    });
+
+    window.addEventListener('pageshow', syncFromGeometry, {
+      passive: true,
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      initTxFloatingContactVisibility,
+      { once: true }
+    );
+  } else {
+    initTxFloatingContactVisibility();
+  }
+})();

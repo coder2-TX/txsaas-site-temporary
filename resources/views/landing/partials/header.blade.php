@@ -55,6 +55,11 @@
   </div>
 </div>
 
-<a class="tx-floating-contact" href="{{ url('/contact') }}" aria-label="تواصل معنا" title="تواصل معنا">
+<a
+  class="tx-floating-contact{{ request()->is('/') ? ' is-home-hero-hidden' : '' }}"
+  href="{{ url('/contact') }}"
+  aria-label="تواصل معنا"
+  title="تواصل معنا"
+>
   <span class="tx-floating-contact__icon" aria-hidden="true"></span>
 </a>

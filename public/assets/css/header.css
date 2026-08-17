@@ -294,7 +294,7 @@ body.is-scrolled .tx-header {
   border-radius: 50%;
   outline: 0 !important;
   box-shadow: 0 12px 28px rgba(66, 116, 182, .27) !important;
-  transition: transform .22s ease, background-color .22s ease, box-shadow .22s ease;
+  transition: transform .22s ease, background-color .22s ease, box-shadow .22s ease, opacity .18s ease, visibility .18s ease;
 }
 
 .tx-floating-contact:hover {
@@ -307,6 +307,13 @@ body.is-scrolled .tx-header {
 .tx-floating-contact:active {
   transform: translateY(-1px) scale(.98);
 }
+.tx-floating-contact.is-home-hero-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px) scale(.96);
+}
+
 
 .tx-floating-contact__icon {
   width: 23px;
