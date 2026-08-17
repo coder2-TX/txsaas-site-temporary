@@ -113,9 +113,9 @@
 .tx-whyPoint__title {
   margin: 0 !important;
   color: #102033 !important;
-  font-size: clamp(17px, 1.35vw, 19px) !important;
-  font-weight: 900 !important;
-  line-height: 1.28 !important;
+  font-size: var(--tx-item-title-size) !important;
+  font-weight: var(--tx-item-title-weight) !important;
+  line-height: var(--tx-item-title-line-height) !important;
 }
 
 .tx-whyPoint__text {

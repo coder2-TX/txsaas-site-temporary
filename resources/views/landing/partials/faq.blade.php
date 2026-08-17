@@ -66,10 +66,22 @@
   @endphp
 
   <div class="tx-container">
-    <div class="tx-sectionHead">
+    <header class="tx-faqHead">
       <h2 class="tx-h2">أسئلة شائعة</h2>
-      <p class="tx-sub">إجابات سريعة عن طبيعة حلولنا وطريقة العمل معنا.</p>
-    </div>
+
+      <span class="tx-faqHead__pattern" aria-hidden="true">
+        <img
+          src="{{ asset('assets/images/brand/pattern-line.svg') }}"
+          alt=""
+          width="200"
+          height="32"
+          loading="lazy"
+          decoding="async"
+        >
+      </span>
+
+      <p class="tx-faqHead__sub">إجابات سريعة عن طبيعة حلولنا وطريقة العمل معنا.</p>
+    </header>
 
     <div class="tx-faq" data-faq>
       @foreach ($items as $item)

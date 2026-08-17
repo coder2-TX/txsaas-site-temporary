@@ -1,6 +1,10 @@
 /* Canonical TX-SaaS styles — consolidated from approved visual state. */
 
 .tx-section {
+  /* Shared title contract for service/product/process/why/FAQ item names */
+  --tx-item-title-size: 17px;
+  --tx-item-title-weight: 600;
+  --tx-item-title-line-height: 24px;
   padding: 56px 0;
 }
 

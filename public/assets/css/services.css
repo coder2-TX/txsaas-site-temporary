@@ -92,9 +92,9 @@
 
 .tx-service__title {
   margin: 0;
-  font-size: clamp(17px, 1.35vw, 19px);
-  font-weight: 900;
-  line-height: 1.28;
+  font-size: var(--tx-item-title-size) !important;
+  font-weight: var(--tx-item-title-weight) !important;
+  line-height: var(--tx-item-title-line-height) !important;
 }
 
 .tx-service__text {
